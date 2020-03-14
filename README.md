@@ -1,4 +1,5 @@
 # craftspace-frontend
+<<<<<<< HEAD
 
 > an online art ordering system
 
@@ -20,3 +21,6 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+=======
+frontend code for art ordering system made with vue.js and django
+>>>>>>> f6c00e805fc64830e929780ee97993ac1afe8957
