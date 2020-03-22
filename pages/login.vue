@@ -67,7 +67,7 @@
                   id="signin"
                   type="submit"
                   name="signin"
-                  class="form-submit"
+                  class="form-submit bg-dark"
                   value="Log in"
                 />
               </div>

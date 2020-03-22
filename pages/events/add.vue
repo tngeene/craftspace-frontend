@@ -17,21 +17,17 @@
         />
       </div>
       <div class="col-md-4">
-        <form @submit.prevent="submitproduct">
+        <form @submit.prevent="submitevent">
           <div class="form-group">
-            <label for>product Name</label>
-            <input v-model="product.name" type="text" class="form-control" />
+            <label for>Event Name</label>
+            <input v-model="event.name" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <label for>Category</label>
-            <input
-              v-model="product.category"
-              type="number"
-              class="form-control"
-            />
+            <label for>Venue</label>
+            <input v-model="event.venue" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <label for>Picture</label>
+            <label for>Banner</label>
             <input
               type="file"
               name="file"
@@ -46,37 +42,41 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for>Quantities available</label>
-                <input
-                  v-model="product.quantity"
-                  type="number"
-                  class="form-control"
-                />
+                <label for>Date</label>
+                <b-form-datepicker v-model="event.date" class="form-control" />
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for>
-                  Price
-                  <small>(ksh)</small>
-                </label>
-                <input
-                  v-model="product.price"
-                  type="number"
+                <label for>Time</label>
+                <b-form-timepicker
+                  v-model="event.time"
+                  locale="en"
                   class="form-control"
                 />
               </div>
+            </div>
+            <div class="form-group">
+              <label for>
+                Price
+                <small>(ksh)</small>
+              </label>
+              <input
+                v-model="event.ticket_price"
+                type="number"
+                class="form-control"
+              />
             </div>
           </div>
           <div class="form-group mb-3">
             <label for>Description</label>
             <textarea
-              v-model="product.description"
+              v-model="event.description"
               class="form-control"
               rows="8"
             ></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-dark">Submit</button>
         </form>
       </div>
     </div>
@@ -86,13 +86,14 @@
 export default {
   data() {
     return {
-      product: {
+      event: {
         name: '',
         description: '',
-        price: '',
-        picture: '',
-        category: '',
-        quantity: ''
+        venue: '',
+        date: '',
+        time: '',
+        banner: '',
+        ticket_price: ''
       },
       preview: ''
     }
@@ -103,7 +104,7 @@ export default {
       if (!files.length) {
         return
       }
-      this.product.picture = files[0]
+      this.event.banner = files[0]
       this.createImage(files[0])
     },
     createImage(file) {
@@ -115,22 +116,22 @@ export default {
       }
       reader.readAsDataURL(file)
     },
-    async submitproduct() {
+    async submitevent() {
       const config = {
         headers: { 'content-type': 'multipart/form-data' }
       }
       const formData = new FormData()
-      for (const data in this.product) {
-        formData.append(data, this.product[data])
+      for (const data in this.event) {
+        formData.append(data, this.event[data])
       }
       try {
         // eslint-disable-next-line no-unused-vars
         const response = await this.$axios.$post(
-          '/art-pieces/add/',
+          '/events/add/',
           formData,
           config
         )
-        this.$router.push('/art')
+        this.$router.push('/events')
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log(e)
@@ -139,7 +140,7 @@ export default {
   },
   head() {
     return {
-      title: 'Add Art Piece'
+      title: ' Craftspace | Upload Event or Exhibition'
     }
   }
 }

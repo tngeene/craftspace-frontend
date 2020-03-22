@@ -9,7 +9,10 @@
         </div>
       </div>
       <template v-for="product in products">
-        <div :key="product.id" class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div
+          :key="product.id"
+          class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
+        >
           <product-card
             :on-delete="deleteProduct"
             :product="product"

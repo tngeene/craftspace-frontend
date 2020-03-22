@@ -23,7 +23,13 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    // '@/assets/main/css//bootstrap.min.css',
+    // '@/assets/main/css/slick-theme.css',
+    // '@/assets/main/css/slick.css',
+    // '@/assets/main/css/nouislider.min.css',
+    '@/assets/main/css/style.css'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
@@ -44,7 +50,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@neneos/nuxt-animate.css'
   ],
   /*
    ** Axios module configuration
@@ -54,7 +61,7 @@ export default {
     baseURL: 'http://127.0.0.1:8000/api/v1/'
   },
   auth: {
-    localStorage: true,
+    localStorage: false,
     cookie: {
       options: {
         expires: 7 // sets the user to be locked out after 7 days of inactivity

@@ -116,7 +116,7 @@
                   id="signup"
                   type="submit"
                   name="signup"
-                  class="form-submit"
+                  class="form-submit bg-dark"
                   value="Register"
                 />
               </div>
@@ -126,7 +126,7 @@
             <figure>
               <img
                 src="~/assets/signup/images/signup-image.jpg"
-                alt="sing up image"
+                alt="sign up image"
               />
             </figure>
             <nuxt-link to="/login" class="signup-image-link"

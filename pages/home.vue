@@ -5,20 +5,20 @@
       style="text-shadow: 0px 0px 2px #000"
       fade
       indicators
-      img-width="1024"
-      img-height="480"
     >
       <b-carousel-slide
-        caption="First slide"
-        img-src="https://picsum.photos/1024/480/?image=10"
+        caption="An online space everyone can enjoy,
+         learn and discover the richness of African Contemporary Art."
+        img-src="/artist.jpeg"
       ></b-carousel-slide>
       <b-carousel-slide
-        caption="Second Slide"
-        img-src="https://picsum.photos/1024/480/?image=12"
+        caption="Craftspace showcases the dynamic African art scene and connects a selection of African artists with art lovers, collectors, curators, art buyers,
+         corporations, museums and art institutions."
+        img-src="/trumpet.jpg"
       ></b-carousel-slide>
       <b-carousel-slide
-        caption="Third Slide"
-        img-src="https://picsum.photos/1024/480/?image=22"
+        caption="Enhancing creatives and aiming to improve their portfolio"
+        img-src="/art-background.jpg"
       ></b-carousel-slide>
     </b-carousel>
   </div>
@@ -39,6 +39,11 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false
     }
+  },
+  head() {
+    return {
+      title: 'Craftspace | Home'
+    }
   }
 }
 </script>
@@ -47,6 +52,8 @@ export default {
 #carousel-fade {
   position: absolute;
   width: 100%;
+  height: 600px;
+  overflow: hidden;
   top: 0;
 }
 </style>
