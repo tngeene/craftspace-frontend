@@ -35,7 +35,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 header {
   min-height: 100vh;
   background-image: linear-gradient(
@@ -43,7 +43,7 @@ header {
       rgba(0, 0, 0, 0.9),
       rgba(0, 0, 0, 0.4)
     ),
-    url('/landing.jpg');
+    url('/masks.jpg');
   background-position: center;
   background-size: cover;
   position: relative;

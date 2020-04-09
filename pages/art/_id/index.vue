@@ -5,7 +5,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <!-- SECTION -->
-    <div class="section">
+    <div class="section mt-2">
       <!-- container -->
       <div class="container">
         <!-- row -->
@@ -80,7 +80,10 @@
                     <span class="qty-down">-</span>
                   </div>
                 </div>
-                <button class="btn btn-round btn-dark">
+                <button
+                  class="btn btn-round btn-dark"
+                  @click="addToCart(product)"
+                >
                   <i class="fa fa-shopping-cart"></i> add to cart
                 </button>
               </div>
@@ -411,6 +414,15 @@ export default {
   data() {
     return {
       product: Object
+    }
+  },
+  methods: {
+    addToCart(item) {
+      this.$store.commit('addToCart', item)
+      this.$toast.open({
+        message: 'Added to Cart',
+        type: 'is-success'
+      })
     }
   },
   head() {

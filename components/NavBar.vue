@@ -17,6 +17,9 @@
           <b-nav-item><nuxt-link to="/artists">Artists</nuxt-link></b-nav-item>
           <b-nav-item><nuxt-link to="/art">Collection</nuxt-link></b-nav-item>
           <b-nav-item
+            ><nuxt-link to="/"> Cart ({{ cartTotal }}) </nuxt-link></b-nav-item
+          >
+          <b-nav-item
             ><nuxt-link to="/events">Exhibitions</nuxt-link></b-nav-item
           >
 
@@ -50,7 +53,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'NavBar',
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser'])
+    ...mapGetters(['isAuthenticated', 'loggedInUser', 'cartTotal'])
   },
   methods: {
     async logout() {

@@ -5,8 +5,8 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=yes"
     />
     <!-- Sign in  Form -->
-    <section class="sign-in">
-      <div class="container">
+    <section class="sign-in fadeInUp animated">
+      <div class="container mt-5">
         <div class="signin-content">
           <div class="signin-image">
             <figure>
@@ -99,16 +99,18 @@ export default {
   methods: {
     async login() {
       try {
+        this.$toast.show('Logging in...')
         await this.$auth.loginWith('local', {
           data: {
             email: this.email,
             password: this.password
           }
         })
-
+        this.$toast.success('Successfully authenticated')
         this.$router.push('/profile')
       } catch (e) {
-        this.error = e.response.data.detail
+        this.$toast.global.my_error() // Using custom toast
+        this.$toast.error('Error while authenticating')
       }
     }
   },
@@ -119,7 +121,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 header {
   min-height: 100vh;
   background-image: linear-gradient(
@@ -127,10 +129,11 @@ header {
       rgba(0, 0, 0, 0.9),
       rgba(0, 0, 0, 0.4)
     ),
-    url('/gray-metal-cube.jpg');
+    url('/masai.jpg');
   background-position: center center;
   background-size: cover;
   position: relative;
+  overflow: hidden;
 }
 .label {
   color: #fff;

@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <section class="signup">
-      <div class="container">
+    <section class="signup fadeInUp animated">
+      <div class="container mt-5">
         <div class="signup-content">
           <div class="signup-form mt-2">
             <h2 class="form-title">Sign up</h2>
@@ -167,6 +167,7 @@ export default {
   methods: {
     async register() {
       try {
+        this.$toast.show('Registering...')
         await this.$axios.post('auth/users/', {
           email: this.email,
           first_name: this.firstname,
@@ -175,17 +176,18 @@ export default {
           membership_type: this.membership_type,
           password: this.password
         })
-
+        this.$toast.success('Registration Successful! Proceed with Login.')
         await this.$auth.loginWith('local', {
           data: {
             email: this.email,
             password: this.password
           }
         })
-
         this.$router.push('/login')
       } catch (e) {
         this.error = e.response.data.detail
+        this.$toast.global.my_error() // Using custom toast
+        this.$toast.error('Error while Registering :(')
       }
     }
   },
@@ -197,6 +199,24 @@ export default {
 }
 </script>
 
+<style scoped>
+header {
+  min-height: 100vh;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url('/masai.jpg');
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+.label {
+  color: #fff;
+}
+</style>
 <style scoped>
 @import '@/assets/signup/css/style.css';
 @import '~/assets/signup/fonts/material-icon/css/material-design-iconic-font.min.css';

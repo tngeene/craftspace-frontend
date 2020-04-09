@@ -1,7 +1,10 @@
 <template>
   <div class="card event-card">
     <div class="card-body">
-      <a href="#" class="text-decoration-none text-dark">
+      <nuxt-link
+        :to="`/events/${event.id}`"
+        class="text-decoration-none text-dark"
+      >
         <div class="row no-gutters shadow-sm hover-shadow mb-4">
           <div class="col-md-3">
             <img :src="event.banner" :alt="event.name" class="w-100" />
@@ -38,7 +41,7 @@
             </div>
           </div>
         </div>
-      </a>
+      </nuxt-link>
     </div>
   </div>
 </template>

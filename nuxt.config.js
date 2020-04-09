@@ -51,8 +51,41 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/pwa',
+    '@nuxtjs/toast',
     '@neneos/nuxt-animate.css'
   ],
+  // toast settings
+  toast: {
+    position: 'top-center',
+    duration: 10000,
+    register: [
+      // Register custom toasts
+      {
+        name: 'my_error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      }
+    ],
+    action: [
+      {
+        text: 'Cancel',
+        onClick: (e, toastObject) => {
+          toastObject.goAway(0)
+        }
+      },
+      {
+        text: 'Undo',
+        // router navigation
+        push: {
+          name: 'somewhere',
+          // this will prevent toast from closing
+          dontClose: true
+        }
+      }
+    ]
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -77,8 +110,8 @@ export default {
           },
           user: { url: 'auth/users/me/', method: 'get', propertyName: false },
           logout: false,
-          tokenType: 'Bearer',
-          tokenRequired: 'true'
+          tokenType: 'Token',
+          tokenRequired: true
         }
       }
     }
