@@ -33,7 +33,7 @@
                 {{ event.date.get }}
               </h3>
               <p class="font-weight-normal text-center text-uppercase">
-                {{ event.date }}
+                {{ event.date | moment.format('MMMM Do YYYY,') }}
               </p>
               <p class="font-weight-normal text-center">
                 {{ event.date }}

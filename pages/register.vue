@@ -21,7 +21,7 @@
                   ><i class="zmdi zmdi-account material-icons-name"></i
                 ></label>
                 <input
-                  id="name"
+                  id="f_name"
                   v-model="firstname"
                   type="text"
                   name="firstname"
@@ -34,7 +34,7 @@
                   ><i class="zmdi zmdi-account material-icons-name"></i
                 ></label>
                 <input
-                  id="name"
+                  id="l_name"
                   v-model="lastname"
                   type="text"
                   name="lastname"

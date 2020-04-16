@@ -17,7 +17,7 @@
           <p class="post-meta">
             Posted by
             {{ event.uploaded_by }}
-            on {{ event.date }}
+            will be held on {{ event.date | moment('MMMM Do YYYY') }}
           </p>
         </div>
       </div>

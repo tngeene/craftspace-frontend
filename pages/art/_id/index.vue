@@ -86,6 +86,12 @@
                 >
                   <i class="fa fa-shopping-cart"></i> add to cart
                 </button>
+                <button
+                  class="btn btn-round btn-dark"
+                  @click="removeFromCart(product)"
+                >
+                  <i class="fa fa-shopping-cart"></i> Remove From Cart
+                </button>
               </div>
 
               <!-- <ul class="product-btns">
@@ -418,11 +424,12 @@ export default {
   },
   methods: {
     addToCart(item) {
-      this.$store.commit('addToCart', item)
-      this.$toast.open({
-        message: 'Added to Cart',
-        type: 'is-success'
-      })
+      this.$store.commit('cart/addToCart', item)
+      this.$toast.success('Added to Cart')
+    },
+    removeFromCart(item) {
+      this.$store.commit('cart/removeItem', item)
+      this.$toast.success('Removed from Cart')
     }
   },
   head() {

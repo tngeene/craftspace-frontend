@@ -3,8 +3,8 @@
 import Vue from 'vue'
 
 export const state = () => ({
-  CartTotal: 0,
-  Cart: {},
+  cartTotal: 0,
+  cart: {},
   products: [],
   globals: []
 })
@@ -43,18 +43,17 @@ export const actions = {
         commit('setProducts', response.data)
       }
     })
-  },
-  async getUsers({ commit }) {
-    await this.$axios.get('auth/users/').then((response) => {
-      if (response.status === 200) {
-        commit('setUsers', response.data)
-      }
-    })
   }
 }
 
 export const getters = {
-  products: (state) => state.products,
-  cart: (state) => state.cart,
-  cartTotal: (state) => state.cartTotal
+  products(state) {
+    return state.products
+  },
+  cart(state) {
+    return state.cart
+  },
+  cartTotal(state) {
+    return state.cartTotal
+  }
 }

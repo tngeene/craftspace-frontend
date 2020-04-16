@@ -53,7 +53,10 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'NavBar',
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser', 'cartTotal'])
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+    cartTotal() {
+      return this.$store.getters['cart/cartTotal']
+    }
   },
   methods: {
     async logout() {

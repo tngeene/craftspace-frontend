@@ -32,4 +32,7 @@ export default {
   transform: translateY(-50%);
   position: relative;
 }
+.category-card:hover {
+  transform: translateY(-10px);
+}
 </style>

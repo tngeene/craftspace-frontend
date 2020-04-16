@@ -14,7 +14,14 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: '~/main/css/font-awesome.min.css'
+      }
+    ],
+    script: [{ src: 'https://use.fontawesome.com/releases/v5.0.8/js/all.js' }]
   },
   /*
    ** Customize the progress-bar color
@@ -33,7 +40,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [`~/plugins/vue-typed`],
+  plugins: [
+    `~/plugins/vue-typed`,
+    `~/plugins/vue-star-ratings`,
+    `~/plugins/vue-moment`
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -104,15 +115,15 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'auth/jwt/create/',
+            url: 'auth/token/login',
             method: 'post',
-            propertyName: 'access'
+            propertyName: 'auth_token'
           },
-          user: { url: 'auth/users/me/', method: 'get', propertyName: false },
-          logout: false,
-          tokenType: 'Token',
-          tokenRequired: true
-        }
+          user: { url: 'auth/users/me', method: 'get', propertyName: false },
+          logout: false
+        },
+        tokenType: 'Token',
+        tokenRequired: true
       }
     }
   },

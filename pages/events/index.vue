@@ -47,7 +47,7 @@ export default {
   },
   head() {
     return {
-      title: 'Events and Exhibitions'
+      title: 'Craftspace | Events and Exhibitions'
     }
   }
 }
