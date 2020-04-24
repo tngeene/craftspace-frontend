@@ -17,7 +17,9 @@
           <b-nav-item><nuxt-link to="/artists">Artists</nuxt-link></b-nav-item>
           <b-nav-item><nuxt-link to="/art">Collection</nuxt-link></b-nav-item>
           <b-nav-item
-            ><nuxt-link to="/"> Cart ({{ cartTotal }}) </nuxt-link></b-nav-item
+            ><nuxt-link to="/cart">
+              Cart ({{ cartTotal }})
+            </nuxt-link></b-nav-item
           >
           <b-nav-item
             ><nuxt-link to="/events">Exhibitions</nuxt-link></b-nav-item

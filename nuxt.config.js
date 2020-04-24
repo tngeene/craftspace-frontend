@@ -43,7 +43,8 @@ export default {
   plugins: [
     `~/plugins/vue-typed`,
     `~/plugins/vue-star-ratings`,
-    `~/plugins/vue-moment`
+    `~/plugins/vue-moment`,
+    { src: '~/plugins/vuex-persistedstate', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

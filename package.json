@@ -23,7 +23,8 @@
     "vue-moment": "^4.1.0",
     "vue-star-rating": "^1.6.1",
     "vue-toasted": "^1.1.28",
-    "vue-typed-js": "^0.1.2"
+    "vue-typed-js": "^0.1.2",
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
