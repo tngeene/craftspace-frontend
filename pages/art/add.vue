@@ -13,7 +13,7 @@
           v-else
           class="img-fluid"
           style="width: 400px; border-radius: 10px; box-shadow: 0 1rem 1rem rgba(0,0,0,.7);"
-          src="/ethnic-mask.jpg"
+          src="/img/ethnic-mask.jpg"
         />
       </div>
       <div class="col-md-4">

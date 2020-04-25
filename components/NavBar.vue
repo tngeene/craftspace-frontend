@@ -5,6 +5,7 @@
       type="light"
       variant="dark"
       style="opacity: 0.85;"
+      class="sticky-top"
     >
       <b-navbar-brand href="/">Craftspace</b-navbar-brand>
 

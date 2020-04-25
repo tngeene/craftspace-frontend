@@ -43,7 +43,7 @@ header {
       rgba(0, 0, 0, 0.9),
       rgba(0, 0, 0, 0.4)
     ),
-    url('/masks.jpg');
+    url('/img/masks.jpg');
   background-position: center;
   background-size: cover;
   position: relative;

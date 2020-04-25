@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="row">
-      <div class="col-8">
+      <div class="col-md-8">
         <div class="mt-4">
           <h4 class="text-center">
             {{ artist.first_name }} {{ artist.id }} {{ artist.last_name }}

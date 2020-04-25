@@ -18,10 +18,32 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: '~/main/css/font-awesome.min.css'
+        href: 'css/font-awesome.min.css'
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
       }
     ],
-    script: [{ src: 'https://use.fontawesome.com/releases/v5.0.8/js/all.js' }]
+    script: [
+      { src: 'https://use.fontawesome.com/releases/v5.0.8/js/all.js' },
+      {
+        src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'
+      },
+      {
+        src:
+          'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'
+      },
+      {
+        src:
+          'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'
+      },
+      {
+        src:
+          'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color

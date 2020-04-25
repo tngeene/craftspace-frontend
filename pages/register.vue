@@ -207,7 +207,7 @@ header {
       rgba(0, 0, 0, 0.9),
       rgba(0, 0, 0, 0.4)
     ),
-    url('/masai.jpg');
+    url('/img/masai.jpg');
   background-position: center center;
   background-size: cover;
   position: relative;

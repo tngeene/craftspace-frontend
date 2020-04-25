@@ -8,7 +8,7 @@
       </ul>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="/art-background.jpg" />
+          <img class="d-block w-100" src="/img/art-background.jpg" />
           <div class="carousel-caption">
             <h1 class="display-2">Craftspace</h1>
             <h3>
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="/trumpet.jpg" />
+          <img class="d-block w-100" src="/img/trumpet.jpg" />
           <div class="carousel-caption">
             <h3>
               Craftspace showcases the dynamic African art scene and connects a
@@ -33,13 +33,13 @@
             </h3>
           </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="/artist.jpeg" />
-        <div class="carousel-caption">
-          <h3>
-            Enhancing creatives and aiming to improve their portfolio.
-          </h3>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="/img/artist.jpeg" />
+          <div class="carousel-caption">
+            <h3>
+              Enhancing creatives and aiming to improve their portfolio.
+            </h3>
+          </div>
         </div>
       </div>
     </div>
@@ -47,11 +47,12 @@
     <div class="col-12 text-right mb-4">
       <div class="d-flex justify-content-between mt-2">
         <h3>Upcoming Exhibitions</h3>
-        <nuxt-link to="/events/" class="btn btn-dark ml-2"
+        <nuxt-link to="/events/" class="btn btn-sm btn-dark ml-2"
           >All Exhibitions</nuxt-link
         >
       </div>
     </div>
+    <hr />
     <template v-for="event in events">
       <div
         :key="event.id"
@@ -60,14 +61,14 @@
         <event-card-home :event="event"></event-card-home>
       </div>
     </template>
-    <div class="row">
+    <div class="row ml-auto mr-auto">
       <div class="col-12 text-right mb-4">
         <div class="d-flex justify-content-between">
-          <h3>Our Collection</h3>
-          <nuxt-link to="/art/" class="btn btn-outline-dark btn-large mr-2"
-            >View All</nuxt-link
-          >
+          <h3>Work of Artists</h3>
+          <hr />
+          <nuxt-link to="/art/" class="text-dark">View All</nuxt-link>
         </div>
+        <hr />
       </div>
       <template v-for="product in products">
         <div
@@ -104,6 +105,7 @@ export default {
   mounted() {
     this.getEvents()
     this.getProducts()
+    this.latestEvents()
   },
   methods: {
     onSlideStart(slide) {
@@ -124,6 +126,9 @@ export default {
       } catch (e) {
         return { events: [] }
       }
+    },
+    latestEvents() {
+      return this.events.splice(1, 3)
     },
     async getProducts() {
       // method for fetching art pieces in storage
@@ -151,18 +156,6 @@ export default {
 }
 </script>
 
-<style>
-#carousel-fade {
-  width: 100%;
-  height: 30rem;
-  overflow: hidden;
-  top: 0;
-}
-#event-card-home {
-  height: 30rem;
-}
-.carousel-caption .display-2,
-h3 {
-  color: antiquewhite;
-}
+<style scoped>
+@import '~/static/css/home.css';
 </style>
