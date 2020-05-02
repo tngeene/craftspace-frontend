@@ -43,10 +43,35 @@
   font-weight: 500;
   padding-bottom: 1rem;
 }
+
 .btn-primary {
   background-color: #6648b1;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
   border: 1px solid #563d7c;
 }
+button {
+  transition: all 0.5s;
+  cursor: pointer;
+}
+button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+}
+
+button:hover span {
+  padding-right: 20px;
+}
+
+button:hover span:after {
+  opacity: 1;
+  right: 0;
+  margin-right: 16px;
+}
+
 .jumbotron {
   padding: 1rem;
   border-radius: 0;
@@ -64,6 +89,51 @@
   width: 95%;
   margin-top: .3rem;
   margin-bottom: 1rem;
+}
+/* line above what we do */
+.title::before {
+  content: '';
+  background: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  height: 5px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  transform: translateY(50px);
+}
+/* overlaps the first line */
+.title::after {
+  content: '';
+  background:linear-gradient(315deg, #485461 0%, #28313b 74%);
+  height: 10px;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  display: block;
+  transform: translateY(6px);
+}
+.event-title::before {
+  content: '';
+  background: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  height: 5px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  transform: translateY(45px);
+}
+/* overlaps the first line */
+.event-title::after {
+  content: '';
+  background:linear-gradient(315deg, #485461 0%, #28313b 74%);
+  height: 10px;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  display: block;
+  transform: translateY(4px);
 }
 .fa-code {
   color: #e54d26;
@@ -108,7 +178,7 @@
 color: #d5d5d5;
 }
 footer {
-  background-color: #3f3f3f;
+  background-image:linear-gradient(315deg, #485461 10%, #28313b 40%);
   color: #d5d5d5;
   padding-top: 2rem;
 }

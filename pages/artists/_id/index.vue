@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       artist: [],
-      profiles: [],
+      // profiles: [],
       products: [],
       events: []
     }
@@ -87,7 +87,7 @@ export default {
         const resp = await this.$axios.$get(`/artists/profiles/?user=${id}`)
         this.profiles = resp
         // eslint-disable-next-line no-console
-        console.log(resp)
+        console.log(`response is ${resp}`)
       } catch (e) {
         return { profiles: [] }
       }

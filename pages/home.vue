@@ -44,43 +44,85 @@
       </div>
     </div>
 
-    <div class="col-12 text-right mb-4">
-      <div class="d-flex justify-content-between mt-2">
-        <h3>Upcoming Exhibitions</h3>
-        <nuxt-link to="/events/" class="btn btn-sm btn-dark ml-2"
-          >All Exhibitions</nuxt-link
-        >
+    <!-- about section -->
+    <div class="container-fluid padding mt-2">
+      <div class="row padding">
+        <div class="col-md-12 col-lg-6">
+          <h2 class="title text-center">About</h2>
+          <p>
+            Imagination is the source of every human achievement.For the bulk of
+            human history, we have relied on this creativity to build
+            inspirational and well designed art, be it music, hand made craft
+            and tech art.
+          </p>
+          <p>
+            Even now, after all the technological advancements, where everything
+            is virtual, humans still feel a deep connection to visual art,
+            Craftspace offers a space for African artists, especially the hand
+            made craft to showcase their craft.
+          </p>
+          <p>
+            It is with this aim that the project was made, to offer a digital
+            solution to the display of curated African art and showcase the
+            works of various artists from the continent. It aims at offering the
+            perfect intersection point between art and technology.
+          </p>
+          <br />
+          <div class="col-12 text-center">
+            <a href="#"
+              ><button class="btn btn-primary from-top text-center">
+                <span>More</span>
+              </button></a
+            >
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img class="img-fluid" src="/img/create.jpeg" alt="" />
+        </div>
       </div>
     </div>
-    <hr />
-    <template v-for="event in events">
-      <div
-        :key="event.id"
-        class="fadeInUp animated col-lg-8 col-md-4 col-sm-6 mb-4"
-      >
-        <event-card-home :event="event"></event-card-home>
-      </div>
-    </template>
-    <div class="row ml-auto mr-auto">
-      <div class="col-12 text-right mb-4">
-        <div class="d-flex justify-content-between">
-          <h3>Work of Artists</h3>
-          <hr />
-          <nuxt-link to="/art/" class="text-dark">View All</nuxt-link>
+    <div class="container-fluid padding">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <div class="mt-2">
+            <h2 class="title text-center">Exhibitions</h2>
+            <nuxt-link
+              to="/events/"
+              class="float-right btn btn-sm btn-dark ml-2"
+              >All Exhibitions</nuxt-link
+            >
+          </div>
         </div>
-        <hr />
+        <template v-for="event in events.slice(0, 3)">
+          <div
+            :key="event.id"
+            class="fadeInUp animated col-lg-8 col-md-4 col-sm-6 mb-4"
+          >
+            <event-card-home :event="event"></event-card-home>
+          </div>
+        </template>
       </div>
-      <template v-for="product in products">
-        <div
-          :key="product.id"
-          class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
-        >
-          <product-card
-            :on-delete="deleteProduct"
-            :product="product"
-          ></product-card>
+    </div>
+    <div class="container-fluid-padding">
+      <div class="row">
+        <div class="col-12 text-right mb-4">
+          <div>
+            <h2 class="title text-center">Work of Artists</h2>
+            <nuxt-link to="/art/" class="text-dark mr-2">View All</nuxt-link>
+          </div>
         </div>
-      </template>
+        <template v-for="product in products.slice(0, 4)">
+          <div
+            :key="product.id"
+            class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
+          >
+            <product-card
+              :on-delete="deleteProduct"
+              :product="product"
+            ></product-card>
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -123,6 +165,8 @@ export default {
       try {
         const events = await this.$axios.get(`events/`, config)
         this.events = events.data
+        // eslint-disable-next-line no-console
+        console.log(`resp is ${events.data}`)
       } catch (e) {
         return { events: [] }
       }

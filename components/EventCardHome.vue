@@ -7,10 +7,10 @@
       <div class="col-md-8 col-sm-8 mx-auto">
         <div class="event-preview">
           <nuxt-link :to="`events/${event.id}`">
-            <h2 class="event-title">
+            <h2 class="event-title text-dark">
               {{ event.name }}
             </h2>
-            <h3 class="event-desciption">
+            <h3 class="event-desciption text-dark">
               <p>{{ event.description }}</p>
             </h3>
           </nuxt-link>
@@ -21,14 +21,14 @@
           </p>
         </div>
       </div>
-      <div class="col-md-2 col-sm mx-auto">
+      <!-- <div class="col-md-2 col-sm mx-auto">
         <nuxt-link
           :to="`/events/${event.id}/edit/`"
           class="btn btn-sm btn-primary"
         >
           Edit
         </nuxt-link>
-      </div>
+      </div> -->
     </div>
     <hr />
   </div>

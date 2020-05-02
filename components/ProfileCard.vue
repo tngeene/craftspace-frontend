@@ -35,6 +35,7 @@
 
 <script>
 export default {
+  name: 'ProfileCard',
   // eslint-disable-next-line vue/require-prop-types
   props: ['profile'],
   data() {

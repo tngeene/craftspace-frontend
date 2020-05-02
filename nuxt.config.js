@@ -18,7 +18,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'css/font-awesome.min.css'
+        href: '/static/css/font-awesome.min.css'
       },
       {
         rel: 'stylesheet',

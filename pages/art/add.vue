@@ -24,11 +24,15 @@
           </div>
           <div class="form-group">
             <label for>Category</label>
-            <input
-              v-model="product.category"
-              type="number"
-              class="form-control"
-            />
+            <select v-model="product.category" class="form-control">
+              <option
+                v-for="category in categories"
+                :key="category.id"
+                :value="category.id"
+              >
+                {{ category.name }}</option
+              >
+            </select>
           </div>
           <div class="form-group">
             <label for>Picture</label>
@@ -84,6 +88,15 @@
 </template>
 <script>
 export default {
+  async asyncData({ $axios }) {
+    try {
+      const categories = await $axios.$get(`art-pieces/art-categories`)
+      return { categories }
+    } catch (e) {
+      // eslint-disable-next-line nuxt/no-this-in-fetch-data
+      return { categories: [] }
+    }
+  },
   data() {
     return {
       product: {
@@ -94,6 +107,7 @@ export default {
         category: '',
         quantity: ''
       },
+      categories: Object,
       preview: ''
     }
   },
@@ -132,6 +146,7 @@ export default {
         )
         this.$router.push('/art')
       } catch (e) {
+        // this.$toast.error(`${this.product.data}`)
         // eslint-disable-next-line no-console
         console.log(e)
       }
