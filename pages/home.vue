@@ -46,7 +46,7 @@
 
     <!-- about section -->
     <div class="container-fluid padding mt-2">
-      <div class="row padding">
+      <div class="row padding align-items-lg-center">
         <div class="col-md-12 col-lg-6">
           <h2 class="title text-center">About</h2>
           <p>

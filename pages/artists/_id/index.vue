@@ -1,33 +1,20 @@
 <template>
   <div class="main">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="mt-4">
-          <h4 class="text-center">
-            {{ artist.first_name }} {{ artist.id }} {{ artist.last_name }}
-          </h4>
-          <template v-for="profile in profiles">
-            <div :key="profile.id" class="ml-3">
-              <profile-card :profile="profile"></profile-card>
-            </div>
-          </template>
-        </div>
-      </div>
-    </div>
+    <template v-for="profile in profiles">
+      <artist-profile :key="profile.id" :profile="profile"></artist-profile>
+    </template>
 
-    <div class="row col-8">
+    <div class="row col-12">
       <div>
         <h4 class="ml-3">
           Recent Art Works
         </h4>
+        <hr />
       </div>
     </div>
-    <div class="row col-8">
+    <div class="row col-12 mb-3 ml-2">
       <template v-for="product in products">
-        <div
-          :key="product.id"
-          class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
-        >
+        <div :key="product.id" class="flipInX animated col-lg-3 col-12 mb-2">
           <product-card :product="product"></product-card>
         </div>
       </template>
@@ -38,14 +25,16 @@
 <script>
 import ProductCard from '~/components/ProductCard.vue'
 import EventCard from '~/components/EventCard.vue'
-import ProfileCard from '~/components/ProfileCard.vue'
+// import ProfileCard from '~/components/ProfileCard.vue'
+import ArtistProfile from '~/components/ArtistProfile.vue'
 
 export default {
   components: {
     ProductCard,
     // eslint-disable-next-line vue/no-unused-components
     EventCard,
-    ProfileCard
+    // ProfileCard,
+    ArtistProfile
   },
   async asyncData({ $axios, params }) {
     try {

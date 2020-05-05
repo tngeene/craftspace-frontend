@@ -7,10 +7,7 @@
         </div>
       </div>
       <template v-for="artist in artists">
-        <div
-          :key="artist.id"
-          class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
-        >
+        <div :key="artist.id" class="col-lg-3 col-md-4 col-sm-6 mb-4 ml-4 mr-4">
           <artist-card :artist="artist"></artist-card>
         </div>
       </template>

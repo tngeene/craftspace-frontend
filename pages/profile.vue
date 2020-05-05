@@ -4,7 +4,9 @@
       <div id="wrapper" class="d-flex">
         <!-- Sidebar -->
         <div id="sidebar-wrapper" class="bg-light border-left">
-          <div class="sidebar-heading">My profile</div>
+          <div class="sidebar-heading">
+            {{ loggedInUser.membership_type }} Profile
+          </div>
           <hr />
           <div class="list-group list-group-flush">
             <p
@@ -14,15 +16,20 @@
               Profile
             </p>
             <p
+              v-if="loggedInUser.membership_type === 'Artist'"
               class="list-group-item list-group-item-action bg-light"
               @click="isVisible = !isVisible"
             >
               Pieces
             </p>
-            <a href="#" class="list-group-item list-group-item-action bg-light"
+            <a
+              v-if="loggedInUser.membership_type === 'Collector'"
+              href="#"
+              class="list-group-item list-group-item-action bg-light"
               >Order History</a
             >
             <p
+              v-if="loggedInUser.membership_type === 'Artist'"
               class="list-group-item list-group-item-action bg-light"
               @click="isVisible = !isVisible"
             >

@@ -16,7 +16,7 @@
           </nuxt-link>
           <p class="post-meta">
             Posted by
-            {{ event.uploaded_by }}
+            {{ event.uploaded_by.first_name }}
             will be held on {{ event.date | moment('MMMM Do YYYY') }}
           </p>
         </div>

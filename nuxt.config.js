@@ -18,7 +18,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: '/static/css/font-awesome.min.css'
+        href: 'css/font-awesome.min.css'
       },
       {
         rel: 'stylesheet',
@@ -90,8 +90,8 @@ export default {
   ],
   // toast settings
   toast: {
-    position: 'top-center',
-    duration: 10000,
+    position: 'bottom-right',
+    duration: 8000,
     register: [
       // Register custom toasts
       {
@@ -103,21 +103,21 @@ export default {
       }
     ],
     action: [
-      {
-        text: 'Cancel',
-        onClick: (e, toastObject) => {
-          toastObject.goAway(0)
-        }
-      },
-      {
-        text: 'Undo',
-        // router navigation
-        push: {
-          name: 'somewhere',
-          // this will prevent toast from closing
-          dontClose: true
-        }
-      }
+      // {
+      //   text: 'Cancel',
+      //   onClick: (e, toastObject) => {
+      //     toastObject.goAway(0)
+      //   }
+      // }
+      // {
+      //   text: 'Undo',
+      //   // router navigation
+      //   push: {
+      //     name: 'somewhere',
+      //     // this will prevent toast from closing
+      //     dontClose: true
+      //   }
+      // }
     ]
   },
   /*

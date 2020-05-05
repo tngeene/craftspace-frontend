@@ -32,7 +32,9 @@
               <em class="text-white">{{ loggedInUser.first_name }}</em>
             </template>
             <b-dropdown-item>
-              <nuxt-link to="/profile"> Profile</nuxt-link></b-dropdown-item
+              <nuxt-link to="/profile" class="text-dark">
+                Profile</nuxt-link
+              ></b-dropdown-item
             >
             <b-dropdown-item @click="logout">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -71,7 +73,7 @@ export default {
 
 <style>
 .nuxt-link-exact-active.nuxt-link-active {
-  color: #526488;
+  color: #929fb9;
   position: relative;
 }
 a {
