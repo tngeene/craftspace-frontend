@@ -23,7 +23,7 @@
                     {{ product.name }}
                   </h2>
                   <p class="is-size-5 float-right">
-                    ksh {{ product.price }} x {{ product.count }}
+                    ksh {{ product.price }} x {{ product.quantities }}
                   </p>
                   <button
                     class="btn btn-sm btn-outline-danger float-right"
@@ -36,7 +36,7 @@
               <div class="float-right">
                 <div class="content">
                   <h2 class="text-weight-bold">
-                    ksh {{ product.price * product.count }}
+                    ksh {{ product.price * product.quantities }}
                   </h2>
                 </div>
               </div>
@@ -46,14 +46,12 @@
           <h1 v-if="cartTotal" class="title text-center">
             Total : ksh {{ totalCost }}
           </h1>
-          <button
+          <nuxt-link
             v-if="cartTotal"
+            to="/checkout"
             class="btn btn-outline-success btn-md ml-auto mr-auto"
-            :class="{ 'is-loading': submitted }"
-            @click="checkout"
+            >Checkout</nuxt-link
           >
-            Checkout
-          </button>
           <div v-if="!cartTotal" class="box text-center">
             <article class="emptyCart">
               <h1 class="title">Cart is empty</h1>
@@ -81,7 +79,7 @@ export default {
     },
     totalCost() {
       return Object.values(this.cart)
-        .reduce((sum, el) => sum + el.count * el.price, 0)
+        .reduce((sum, el) => sum + el.quantities * el.price, 0)
         .toFixed(2)
     }
   },

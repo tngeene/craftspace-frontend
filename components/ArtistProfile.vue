@@ -4,7 +4,7 @@
       <div class="col-12 col-md-6">
         <img :src="profile.photo" class="w-100" alt="" />
       </div>
-      <div class="col-12 col-md-6 text-center">
+      <div class="col-12 col-md-6 my-auto text-center">
         <h2 class="user-title">{{ profile.user }}</h2>
         <span> {{ profile.county }} </span>
         <p>{{ profile.bio }}</p>

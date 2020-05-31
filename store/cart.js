@@ -4,7 +4,7 @@ import Vue from 'vue'
 
 export const state = () => ({
   cartTotal: 0,
-  cart: {},
+  cart: [],
   products: [],
   globals: []
 })
@@ -17,20 +17,20 @@ export const mutations = {
     state.globals = globals
   },
   clearCart(state) {
-    state.cart = {}
+    state.cart = []
     state.cartTotal = 0
   },
   removeItem(state, item) {
-    state.cartTotal -= item.count
+    state.cartTotal -= item.quantities
     Vue.delete(state.cart, item.id)
   },
   addToCart(state, item) {
     state.cartTotal++
     if (item.id in state.cart) {
-      state.cart[item.id].count++
+      state.cart[item.id].quantities++
     } else {
       const stateItem = Object.assign({}, item)
-      stateItem.count = 1
+      stateItem.quantities = 1
       state.cart[item.id] = stateItem
     }
   }
