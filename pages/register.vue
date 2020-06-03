@@ -177,12 +177,6 @@ export default {
           password: this.password
         })
         this.$toast.success('Registration Successful! Proceed with Login.')
-        await this.$auth.loginWith('local', {
-          data: {
-            email: this.email,
-            password: this.password
-          }
-        })
         this.$router.push('/login')
       } catch (e) {
         this.error = e.response.data.detail

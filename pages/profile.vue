@@ -194,7 +194,7 @@ export default {
     ProfileCard
     // ProductsTable
   },
-  middleware: 'auth',
+  middleware: 'has-profile',
   filters: {
     truncate(text, length, suffix) {
       if (text.length > 15) {
