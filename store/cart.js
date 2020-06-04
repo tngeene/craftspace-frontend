@@ -4,7 +4,7 @@ import Vue from 'vue'
 
 export const state = () => ({
   cartTotal: 0,
-  cart: [],
+  cart: {},
   products: [],
   globals: []
 })
@@ -17,7 +17,7 @@ export const mutations = {
     state.globals = globals
   },
   clearCart(state) {
-    state.cart = []
+    state.cart = {}
     state.cartTotal = 0
   },
   removeItem(state, item) {

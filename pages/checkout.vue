@@ -148,9 +148,10 @@ export default {
         }
         await this.$axios.post('orders/add', {
           order_items: orderItems,
-          order_total: this.totalCost,
+          order_total: parseInt(this.totalCost),
           phone_number: this.phone_number
         })
+        this.$store.commit('cart/clearCart')
         this.$toast.success('Order Succesfully Placed')
         this.$router.push('/home')
       } catch (e) {
@@ -162,7 +163,7 @@ export default {
   },
   head() {
     return {
-      title: 'Craftspace | checkout'
+      title: 'Craftspace | Checkout'
     }
   }
 }
