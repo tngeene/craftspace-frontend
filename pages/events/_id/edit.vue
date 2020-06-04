@@ -4,16 +4,16 @@
     <div class="row">
       <div class="col-md-6 mb-4">
         <img
-          v-if="!preview"
+          v-if="preview"
           class="img-fluid"
           style="width: 400px; border-radius: 10px; box-shadow: 0 1rem 1rem rgba(0,0,0,.7);"
-          :src="event.banner"
+          :src="preview"
         />
         <img
           v-else
           class="img-fluid"
           style="width: 400px; border-radius: 10px; box-shadow: 0 1rem 1rem rgba(0,0,0,.7);"
-          src="@/static/img/mask.jpg"
+          :src="event.banner"
         />
       </div>
       <div class="col-md-4">
@@ -130,11 +130,12 @@ export default {
       }
       try {
         // eslint-disable-next-line no-unused-vars
-        const response = await this.$axios.$put(
+        const response = await this.$axios.$patch(
           `/events/${editedEvent.id}/`,
           formData,
           config
         )
+        this.$toast.success(`${this.event.name} successfully updated`)
         this.$router.push('/events/')
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -144,7 +145,7 @@ export default {
   },
   head() {
     return {
-      title: 'Edit event'
+      title: 'Edit event | ' + this.event.name
     }
   }
 }

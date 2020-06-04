@@ -43,7 +43,7 @@
       </div>
       <div class="col-10">
         <template v-for="profile in profiles">
-          <div :key="profile.id" class="ml-3 mt-3">
+          <div :key="profile.id" class="mt-3">
             <profile-card v-if="!isVisible" :profile="profile"></profile-card>
           </div>
         </template>
@@ -248,10 +248,10 @@ export default {
     async deleteProduct(id) {
       try {
         await this.$axios.delete(`art-pieces/${id}/delete`)
-        this.$toast.success('Product Successfully Deleted')
+        this.$toast.success('Piece Successfully Deleted')
         this.$router.push('/profile')
       } catch (e) {
-        this.$toast.danger('Could Not delete')
+        this.$toast.error('Could Not delete')
         return e.data
       }
     },

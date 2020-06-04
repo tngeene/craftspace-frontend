@@ -50,3 +50,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+b-card img-src {
+  height: 191px !important;
+  width: 275px !important;
+}
+</style>

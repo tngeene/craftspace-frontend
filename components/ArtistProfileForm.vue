@@ -15,7 +15,7 @@
             <div class="form-group">
               <textarea
                 id="bio"
-                v-model="bio"
+                v-model="profile.bio"
                 type="text"
                 placeholder="Tell us something about yourself..."
                 cols="40"
@@ -30,7 +30,7 @@
                 ><i class="zmdi zmdi-account material-icons-name"></i
               ></label>
               <input
-                v-model="county"
+                v-model="profile.county"
                 type="text"
                 name="county"
                 placeholder="County"
@@ -41,7 +41,7 @@
               <label for="email"><i class="zmdi zmdi-email"></i></label>
               <input
                 id="birth_place"
-                v-model="birth_place"
+                v-model="profile.birth_place"
                 type="text"
                 name="text"
                 placeholder="Birth Place"
@@ -100,12 +100,12 @@ export default {
   middleware: 'auth',
   data() {
     return {
-      // eslint-disable-next-line vue/no-dupe-keys
-      bio: '',
-      // county: '',
-      birth_place: '',
-      photo: '',
-      billing_address: ''
+      profile: {
+        bio: '',
+        county: '',
+        birth_place: '',
+        photo: ''
+      }
     }
   },
   computed: {
@@ -118,7 +118,7 @@ export default {
       if (!files.length) {
         return
       }
-      this.photo = files[0]
+      this.profile.photo = files[0]
       this.createImage(files[0])
     },
     createImage(file) {
@@ -131,15 +131,17 @@ export default {
       reader.readAsDataURL(file)
     },
     async postArtistProfile() {
+      const config = {
+        headers: { 'content-type': 'multipart/form-data' }
+      }
+      const formData = new FormData()
+      for (const data in this.profile) {
+        formData.append(data, this.profile[data])
+      }
       try {
-        await this.$axios.post('artists/profile/add', {
-          bio: this.bio,
-          county: this.county,
-          birth_place: this.birth_place,
-          photo: this.photo
-        })
+        await this.$axios.post('artists/profile/add', formData, config)
         this.$toast.success('Profile Succesfully Updated')
-        this.$router.push('/home')
+        this.$router.push('/profile')
       } catch (e) {
         // this.error = e.response.data.detail
         this.$toast.global.my_error() // Using custom toast
