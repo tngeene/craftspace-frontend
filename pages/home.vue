@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="/img/trumpet.jpg" />
+          <img class="d-block w-100" src="/img/village.jpg" />
           <div class="carousel-caption">
             <h3>
               Craftspace showcases the dynamic African art scene and connects a
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="/img/artist.jpeg" />
+          <img class="d-block w-100" src="/img/gamepark.jpg" />
           <div class="carousel-caption">
             <h3>
               Enhancing creatives and aiming to improve their portfolio.

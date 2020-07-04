@@ -40,7 +40,7 @@ export default {
 img {
   display: inline-block;
   max-width: 100%;
-  height: auto;
+  max-height: 282px;
 }
 img {
   vertical-align: middle;
