@@ -62,7 +62,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-@import '~/static/css/home.css';
-</style>

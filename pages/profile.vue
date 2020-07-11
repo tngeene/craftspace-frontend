@@ -368,8 +368,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-@import '~/static/css/home.css';
-@import '@/assets/main/css/simple-sidebar.css';
-</style>

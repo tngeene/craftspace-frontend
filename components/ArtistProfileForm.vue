@@ -56,29 +56,6 @@
                 @change="onFileChange"
               />
             </div>
-            <!-- <div class="form-group">
-                <label for="membership_type"
-                  ><i class="zmdi zmdi-account-o"></i
-                ></label>
-                <b-form-select
-                  id="membership_type"
-                  v-model="membership_type"
-                  :options="options"
-                  type="select"
-                  name="membership_type"
-                  placeholder="Account type"
-                />
-              </div>
-              <div class="form-group">
-                <label for="password"><i class="zmdi zmdi-lock"></i></label>
-                <input
-                  id="pass"
-                  v-model="password"
-                  type="password"
-                  name="pass"
-                  placeholder="Password"
-                />
-              </div> -->
             <div class="text-center">
               <button type="submit" class="form-submit btn-md bg-dark">
                 Save Profile

@@ -15,7 +15,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: 'img/icon.png' },
       {
         rel: 'stylesheet',
         href: 'css/font-awesome.min.css'
@@ -48,17 +48,15 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: {
+    color: `#243B55`,
+    continuous: true,
+    duration: 5000
+  },
   /*
    ** Global CSS
    */
-  css: [
-    // '@/assets/main/css//bootstrap.min.css',
-    // '@/assets/main/css/slick-theme.css',
-    // '@/assets/main/css/slick.css',
-    // '@/assets/main/css/nouislider.min.css',
-    '@/assets/main/css/style.css'
-  ],
+  css: ['~/assets/css/main.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -90,8 +88,8 @@ export default {
   ],
   // toast settings
   toast: {
-    position: 'bottom-right',
-    duration: 8000,
+    position: 'top-right',
+    duration: 4000,
     register: [
       // Register custom toasts
       {
@@ -103,21 +101,12 @@ export default {
       }
     ],
     action: [
-      // {
-      //   text: 'Cancel',
-      //   onClick: (e, toastObject) => {
-      //     toastObject.goAway(0)
-      //   }
-      // }
-      // {
-      //   text: 'Undo',
-      //   // router navigation
-      //   push: {
-      //     name: 'somewhere',
-      //     // this will prevent toast from closing
-      //     dontClose: true
-      //   }
-      // }
+      {
+        text: 'Close',
+        onClick: (e, toastObject) => {
+          toastObject.goAway(0)
+        }
+      }
     ]
   },
   /*

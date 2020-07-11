@@ -88,6 +88,11 @@ export default {
       this.$store.commit('cart/removeItem', item)
       this.$toast.success('Item Removed from Cart')
     }
+  },
+  head() {
+    return {
+      title: 'Craftspace | Cart'
+    }
   }
 }
 </script>

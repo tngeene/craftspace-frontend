@@ -39,7 +39,3 @@ export default {
   name: 'Footer'
 }
 </script>
-
-<style scoped>
-@import '~/static/css/home.css';
-</style>
