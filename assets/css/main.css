@@ -2,8 +2,41 @@
 
 :root {
   --blue-grad: linear-gradient(to right, 315deg, #ffa69e 0%, #5d4954 74%);
+  --light-black: rgb(51, 51, 51);
+  --red: rgb(220, 58, 15);
+  --grey: #d6dbdf;
+  --grade-grey: #2c3e50; 
+  --margo: #FFEFBA;
+  --light-beige: #6D6027;
 }
 
+html, body {
+  height: 100% ;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: var(--light-black)
+}
+.nuxt-link-exact-active.nuxt-link-active {
+  color: var(--margo);
+  position: relative;
+}
+.main-nav a {
+  color: var(--grey);
+  position: relative;
+}
+a {
+  color: var(--grade-grey);
+  position: relative;
+}
+a:hover {
+  color: var(--light-beige);
+  position: relative;
+  text-decoration: none;
+}
+.navbar {
+  z-index: 9;
+  width: 100%;
+}
 #carousel-fade {
     width: 100%;
     height: 30rem;
@@ -47,7 +80,10 @@
   font-weight: 500;
   padding-bottom: 1rem;
 }
-
+.action-buttons .btn{
+  width: 10.4375rem;
+  margin: auto 10px;
+}
 .btn-primary {
   background-color: #6648b1;
   background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
@@ -220,9 +256,40 @@ hr.light {
   margin-top: .8rem;
   margin-bottom: 1rem;
 }
+.product-price {
+  transform: translateX(1.875rem);
+  min-height: 6.875rem;
+}
+.product-price {
+  background: var(--light-black) ;
+}
+ #addToCart {
+  background: var(--red);
+  outline: none !important;
+  border: none !important;
+}
+.product-price::after {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: -10px;
+    right: 0px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0) transparent transparent rgb(0, 0, 0);
+    border-width: 5px;
+}
 
+.mini-images {
+  border-right: 1px solid var(--grey);
+  margin-bottom: 5px;
+}
+.mini-images .images img{
+  margin-top: 5px;
+}
 
-
+#productDescCard {
+  margin: 3rem 0;
+}
 
 
 /*---Media Queries --*/
@@ -255,6 +322,12 @@ hr.light {
     font-size: 2.5em;
     padding: 1.2rem;
   }
+  .product-price {
+    transform: translateX(-0.125rem);
+  }
+  .product-price::after{
+    display: none;
+  }
 }
 @media (max-width: 576px) {
   .carousel-caption {
@@ -280,6 +353,9 @@ hr.light {
   .social a {
     font-size: 2em;
     padding: .7rem;
+  }
+  .product-price::after{
+    display: none;
   }
 }
 

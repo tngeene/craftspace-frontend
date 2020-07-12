@@ -9,18 +9,32 @@
       <p class="card-text">
         <strong> Artist:</strong> {{ product.uploaded_by }}
       </p>
-      <div class="action-buttons text-center">
+      <div class="action-buttons text-center d-flex">
         <nuxt-link :to="`/art/${product.id}/`" class="btn btn-md btn-primary">
           View
         </nuxt-link>
+        <button
+          id="addToCart"
+          class="btn text-white"
+          @click="addToCart(product)"
+        >
+          <i class="fa fa-shopping-cart"></i> add to cart
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
+  name: 'ProductCard',
   // eslint-disable-next-line vue/require-prop-types
-  props: ['product', 'onDelete']
+  props: ['product', 'onDelete'],
+  methods: {
+    addToCart(item) {
+      this.$store.commit('cart/addToCart', item)
+      this.$toast.success('Added to Cart')
+    }
+  }
 }
 </script>
 <style>

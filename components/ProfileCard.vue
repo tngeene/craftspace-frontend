@@ -17,10 +17,7 @@
           </p>
           <p>
             <i class="fa fa-calendar"></i>
-            {{ profile.created_on }}
-          </p>
-          <p class="card-text">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            Joined on {{ profile.created_on | moment('MMMM Do YYYY') }}
           </p>
         </div>
       </div>

@@ -1,415 +1,123 @@
 <template>
-  <header>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- SECTION -->
-    <div class="section mt-2">
-      <!-- container -->
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <!-- Product main img -->
-          <div class="col-md-5 col-md-push-2">
-            <div id="product-main-img">
-              <div class="slideInLeft animated  product-preview">
-                <img :src="product.picture" alt="" />
-              </div>
-            </div>
-          </div>
-          <!-- /Product main img -->
-
-          <!-- Product thumb imgs -->
-          <div class="col-md-2  col-md-pull-5">
-            <div id="product-imgs">
-              <div class="product-preview">
-                <img :src="product.picture" alt="" />
-              </div>
-            </div>
-          </div>
-          <!-- /Product thumb imgs -->
-
-          <!-- Product details -->
-          <div class="slideInUp animated col-md-5">
-            <div class="product-details">
-              <h2 class="product-name">{{ product.name }}</h2>
-              <div>
-                <div class="product-rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                </div>
-                <a class="review-link" href="#"
-                  >10 Review(s) | Add your review</a
-                >
-              </div>
-              <div>
-                <h3 class="product-price">
-                  {{ product.price }}
-                </h3>
-                <span class="product-available">In Stock</span>
-              </div>
-              <p>
-                {{ product.description }}
-              </p>
-
-              <div class="product-options">
-                <label>
-                  Size
-                  <select class="input-select">
-                    <option value="0">X</option>
-                  </select>
-                </label>
-                <label>
-                  Color
-                  <select class="input-select">
-                    <option value="0">Red</option>
-                  </select>
-                </label>
-              </div>
-
-              <div class="add-to-cart">
-                <div class="qty-label">
-                  Qty
-                  <div class="input-number">
-                    <input type="number" />
-                    <span class="qty-up">+</span>
-                    <span class="qty-down">-</span>
-                  </div>
-                </div>
-                <button
-                  class="btn btn-round btn-dark"
-                  @click="addToCart(product)"
-                >
-                  <i class="fa fa-shopping-cart"></i> add to cart
-                </button>
-                <button
-                  class="btn btn-round btn-dark"
-                  @click="removeFromCart(product)"
-                >
-                  <i class="fa fa-shopping-cart"></i> Remove From Cart
-                </button>
-              </div>
-
-              <!-- <ul class="product-btns">
-                <li>
-                  <a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-exchange"></i> add to compare</a>
-                </li>
-              </ul> -->
-
-              <ul class="product-links">
-                <li>Category:</li>
-                <li>
-                  <a href="#">{{ product.category }}</a>
-                </li>
-              </ul>
-
-              <ul class="product-links">
-                <li>Artist:</li>
-                <li>
-                  <a href="#">{{ product.uploaded_by }}</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- /Product details -->
-
-          <!-- Product tab -->
-          <div class="col-md-12">
-            <div id="product-tab">
-              <!-- product tab nav -->
-              <ul class="tab-nav">
-                <li class="active">
-                  <a data-toggle="tab" href="#tab1">Description</a>
-                </li>
-                <li><a data-toggle="tab" href="#tab2">Details</a></li>
-                <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
-              </ul>
-              <!-- /product tab nav -->
-
-              <!-- product tab content -->
-              <div class="tab-content">
-                <!-- tab1  -->
-                <div id="tab1" class="tab-pane fade in active">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <p>
-                        <!-- {{ product.description }} -->
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!-- /tab1  -->
-
-                <!-- tab2  -->
-                <div id="tab2" class="tab-pane fade in">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex
-                        ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!-- /tab2  -->
-
-                <!-- tab3  -->
-                <div id="tab3" class="tab-pane fade in">
-                  <div class="row">
-                    <!-- Rating -->
-                    <div class="col-md-3">
-                      <div id="rating">
-                        <div class="rating-avg">
-                          <span>4.5</span>
-                          <div class="rating-stars">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                          </div>
-                        </div>
-                        <ul class="rating">
-                          <li>
-                            <div class="rating-stars">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </div>
-                            <div class="rating-progress">
-                              <div style="width: 80%;"></div>
-                            </div>
-                            <span class="sum">3</span>
-                          </li>
-                          <li>
-                            <div class="rating-stars">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="rating-progress">
-                              <div style="width: 60%;"></div>
-                            </div>
-                            <span class="sum">2</span>
-                          </li>
-                          <li>
-                            <div class="rating-stars">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star-o"></i>
-                              <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="rating-progress">
-                              <div></div>
-                            </div>
-                            <span class="sum">0</span>
-                          </li>
-                          <li>
-                            <div class="rating-stars">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star-o"></i>
-                              <i class="fa fa-star-o"></i>
-                              <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="rating-progress">
-                              <div></div>
-                            </div>
-                            <span class="sum">0</span>
-                          </li>
-                          <li>
-                            <div class="rating-stars">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star-o"></i>
-                              <i class="fa fa-star-o"></i>
-                              <i class="fa fa-star-o"></i>
-                              <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="rating-progress">
-                              <div></div>
-                            </div>
-                            <span class="sum">0</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <!-- /Rating -->
-
-                    <!-- Reviews -->
-                    <div class="col-md-6">
-                      <div id="reviews">
-                        <ul class="reviews">
-                          <li>
-                            <div class="review-heading">
-                              <h5 class="name">John</h5>
-                              <p class="date">27 DEC 2018, 8:0 PM</p>
-                              <div class="review-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o empty"></i>
-                              </div>
-                            </div>
-                            <div class="review-body">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua
-                              </p>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="review-heading">
-                              <h5 class="name">John</h5>
-                              <p class="date">27 DEC 2018, 8:0 PM</p>
-                              <div class="review-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o empty"></i>
-                              </div>
-                            </div>
-                            <div class="review-body">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua
-                              </p>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="review-heading">
-                              <h5 class="name">John</h5>
-                              <p class="date">27 DEC 2018, 8:0 PM</p>
-                              <div class="review-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o empty"></i>
-                              </div>
-                            </div>
-                            <div class="review-body">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua
-                              </p>
-                            </div>
-                          </li>
-                        </ul>
-                        <ul class="reviews-pagination">
-                          <li class="active">1</li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li>
-                            <a href="#"><i class="fa fa-angle-right"></i></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <!-- /Reviews -->
-
-                    <!-- Review Form -->
-                    <div class="col-md-3">
-                      <div id="review-form">
-                        <form class="review-form">
-                          <input
-                            class="input"
-                            type="text"
-                            placeholder="Your Name"
-                          />
-                          <input
-                            class="input"
-                            type="email"
-                            placeholder="Your Email"
-                          />
-                          <textarea
-                            class="input"
-                            placeholder="Your Review"
-                          ></textarea>
-                          <div class="input-rating">
-                            <span>Your Rating: </span>
-                            <div class="stars">
-                              <input
-                                id="star5"
-                                name="rating"
-                                value="5"
-                                type="radio"
-                              /><label for="star5"></label>
-                              <input
-                                id="star4"
-                                name="rating"
-                                value="4"
-                                type="radio"
-                              /><label for="star4"></label>
-                              <input
-                                id="star3"
-                                name="rating"
-                                value="3"
-                                type="radio"
-                              /><label for="star3"></label>
-                              <input
-                                id="star2"
-                                name="rating"
-                                value="2"
-                                type="radio"
-                              /><label for="star2"></label>
-                              <input
-                                id="star1"
-                                name="rating"
-                                value="1"
-                                type="radio"
-                              /><label for="star1"></label>
-                            </div>
-                          </div>
-                          <button class="primary-btn">Submit</button>
-                        </form>
-                      </div>
-                    </div>
-                    <!-- /Review Form -->
-                  </div>
-                </div>
-                <!-- /tab3  -->
-              </div>
-              <!-- /product tab content  -->
-            </div>
-          </div>
-          <!-- /product tab -->
-        </div>
-        <!-- /row -->
+  <section id="productSection" class="product-page">
+    <div class="container row py-2 mx-auto">
+      <div class="col-12">
+        <h3>
+          {{ product.name }} by
+          {{
+            product.uploaded_by.first_name + ' ' + product.uploaded_by.last_name
+          }}
+        </h3>
+        <nav class="nav">
+          <a class="nav-link active" href="#">Browse Categories |</a>
+          <a class="nav-link" href="#"
+            >{{
+              product.uploaded_by.first_name +
+                ' ' +
+                product.uploaded_by.last_name
+            }}
+            |
+          </a>
+          <a class="nav-link" href="#">{{ product.name }}</a>
+        </nav>
       </div>
-      <!-- /container -->
+
+      <div class="row">
+        <div class="col-1 mini-images">
+          <div class="images text-center">
+            <img
+              :src="product.picture"
+              height="60px"
+              width="60px"
+              :alt="product.name"
+            />
+            <img
+              v-if="product.image"
+              :src="product.image"
+              height="60px"
+              width="60px"
+              :alt="product.name"
+            />
+          </div>
+        </div>
+        <div class="col-md-7">
+          <img
+            :src="product.picture"
+            height="400rem"
+            width="100%"
+            :alt="product.name"
+          />
+        </div>
+        <div class="col-md-4 bg-light p-4">
+          <h5>{{ product.name }}</h5>
+          <small>
+            {{
+              product.uploaded_by.first_name +
+                ' ' +
+                product.uploaded_by.last_name
+            }}
+          </small>
+          <div class="product-price mt-5 py-3 text-white text-center">
+            <div class="">
+              <p>Ksh {{ product.price }}</p>
+            </div>
+            <div>
+              <button
+                id="addToCart"
+                class="btn text-white"
+                @click="addToCart(product)"
+              >
+                <i class="fa fa-shopping-cart"></i> add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="productDescCard" class="col-12">
+          <ProductDescriptionCard :product="product" />
+        </div>
+        <div class="col-12">
+          <h3>
+            Other Pieces by
+            {{
+              product.uploaded_by.first_name +
+                ' ' +
+                product.uploaded_by.last_name
+            }}
+          </h3>
+        </div>
+        <template v-for="piece in pieces">
+          <div
+            :key="piece.id"
+            class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
+          >
+            <product-card :product="piece"></product-card>
+          </div>
+        </template>
+        <div class="col-12">
+          <h3>
+            You Might also Be interested in
+          </h3>
+        </div>
+        <template v-for="piece in category_products">
+          <div
+            :key="piece.id"
+            class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
+          >
+            <product-card :product="piece"></product-card>
+          </div>
+        </template>
+      </div>
     </div>
-    <!-- /SECTION -->
-  </header>
+  </section>
 </template>
 
 <script>
+import ProductDescriptionCard from '~/components/ProductDescriptionCard'
+import ProductCard from '~/components/ProductCard'
 export default {
-  async asyncData({ $axios, params }) {
+  // eslint-disable-next-line vue/no-unused-components
+  components: { ProductDescriptionCard, ProductCard },
+  async asyncData({ $axios, params, product }) {
     try {
       const product = await $axios.$get(`/art-pieces/${params.id}`)
       return { product }
@@ -419,10 +127,42 @@ export default {
   },
   data() {
     return {
-      product: Object
+      product: Object,
+      pieces: [],
+      category_products: []
     }
   },
+  created() {
+    this.getArtistProduct()
+    this.getRelatedProducts()
+  },
   methods: {
+    async getArtistProduct() {
+      const uploadedBy = this.product.uploaded_by.id
+      try {
+        const resp = await this.$axios.get(
+          `art-pieces/all-art-pieces/?uploaded_by=${uploadedBy}`
+        )
+        // resp = this.pieces.splice(this.piece.indexOf(this.piece), 1)
+        this.pieces = resp.data
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+      }
+    },
+    async getRelatedProducts() {
+      try {
+        const category = this.product.category.id
+        const resp = await this.$axios.get(
+          `art-pieces/all-art-pieces/?category=${category}`
+        )
+        // resp = this.pieces.splice(this.piece.indexOf(this.piece), 1)
+        this.category_products = resp.data
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+      }
+    },
     addToCart(item) {
       this.$store.commit('cart/addToCart', item)
       this.$toast.success('Added to Cart')
