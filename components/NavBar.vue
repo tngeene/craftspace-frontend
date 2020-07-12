@@ -13,7 +13,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class="ml-auto main-nav">
           <b-nav-item><nuxt-link to="/home">Home</nuxt-link></b-nav-item>
           <b-nav-item><nuxt-link to="/artists">Artists</nuxt-link></b-nav-item>
           <b-nav-item><nuxt-link to="/art">Collection</nuxt-link></b-nav-item>
@@ -71,7 +71,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .nuxt-link-exact-active.nuxt-link-active {
   color: #929fb9;
   position: relative;
