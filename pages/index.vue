@@ -18,7 +18,7 @@
       >
         <p class="mt-3"><span class="typing"></span></p>
       </vue-typed-js>
-      <p class="mt-3">Art meets tech ❤️ 🎨 ️</p>
+      <p class="mt-3">We live for art and artistic expression ❤️ 🎨 ️</p>
       <nuxt-link class="btn btn-outline-primary btn-large" to="/home">
         Explore <span class="ml-2">&rarr;</span>
       </nuxt-link>
