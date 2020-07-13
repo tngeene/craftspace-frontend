@@ -1,70 +1,78 @@
 <template>
-  <main>
-    <section class="section">
-      <div class="container">
-        <nuxt-link to="/art" class="back-to-shopping text-weight-bold">
-          &#8592; Back to Collection</nuxt-link
-        >
-        <div class="box">
-          <h1 class="title text-center">
-            Your Cart
-          </h1>
-          <hr />
-          <div v-for="product in cart" :key="product.id" class="box">
-            <article class="media cart-item">
-              <div class="float-left">
-                <figure class="image cart-image">
-                  <img :src="product.picture" class="w-25 h-25" alt="" />
-                </figure>
+  <header class="cart-body">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="card custom-card">
+        <div class="row">
+          <div class="col mt-2">
+            <nuxt-link to="/art" class="back-to-shopping text-weight-bold">
+              &#8592; Back to Collection</nuxt-link
+            >
+            <div class="container row">
+              <div class="col-12 cart-title">
+                <h3 class="font-weight-lighter">Your Cart</h3>
               </div>
-              <div class="media-content">
-                <div class="content">
-                  <h2 class="text-bold text-center">
-                    {{ product.name }}
-                  </h2>
-                  <p class="is-size-5 float-right">
-                    ksh {{ product.price }} x {{ product.quantities }}
-                  </p>
+
+              <div
+                v-for="product in cart"
+                :key="product.id"
+                class="row col-12 align-items-md-center"
+              >
+                <div class="col-4">
+                  <img
+                    :src="product.picture"
+                    height="400px"
+                    width="250px"
+                    class="mb-2 p-2"
+                    alt=""
+                  />
+                </div>
+                <div class="col-6 text-center">
+                  <h4>{{ product.name }}</h4>
+                  <small>{{ product.price }} x {{ product.quantities }}</small>
+                  <p>{{ product.category }}</p>
+                  <p>{{ product.uploaded_by }}</p>
+                </div>
+                <div class="col-2">
+                  <h6 class="text-weight-bold">
+                    ksh {{ product.price * product.quantities }}
+                  </h6>
                   <button
-                    class="btn btn-sm btn-outline-danger float-right"
+                    class="btn btn-sm btn-outline-danger"
                     @click="removeItem(product)"
                   >
                     Remove Item
                   </button>
                 </div>
               </div>
-              <div class="float-right">
-                <div class="content">
-                  <h2 class="text-weight-bold">
-                    ksh {{ product.price * product.quantities }}
-                  </h2>
+              <div class="col-9 text-center mx-auto mb-2">
+                <hr v-if="cartTotal" />
+                <h2 v-if="cartTotal" class="title font-weight-lighter">
+                  Total : ksh {{ totalCost }}
+                </h2>
+                <nuxt-link
+                  v-if="cartTotal"
+                  to="/checkout"
+                  class="btn btn-outline-success btn-md"
+                  >Checkout</nuxt-link
+                >
+                <div v-if="!cartTotal" class="box text-center">
+                  <article class="emptyCart">
+                    <h2 class="title font-weight-lighter">Cart is empty 😟</h2>
+                  </article>
                 </div>
               </div>
-            </article>
-          </div>
-          <hr v-if="cartTotal" />
-          <h1 v-if="cartTotal" class="title text-center">
-            Total : ksh {{ totalCost }}
-          </h1>
-          <nuxt-link
-            v-if="cartTotal"
-            to="/checkout"
-            class="btn btn-outline-success btn-md ml-auto mr-auto"
-            >Checkout</nuxt-link
-          >
-          <div v-if="!cartTotal" class="box text-center">
-            <article class="emptyCart">
-              <h1 class="title">Cart is empty</h1>
-            </article>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </header>
 </template>
 
 <script>
+// import CartDetails from '~/components/CartDetails'
 export default {
+  // components: { CartDetails },
   data() {
     return {
       success: false
