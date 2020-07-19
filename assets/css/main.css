@@ -290,6 +290,13 @@ hr.light {
 #productDescCard {
   margin: 3rem 0;
 }
+.card-text {
+  margin-top: 1.875rem;
+  display: flex;
+}
+.card-text p{
+  margin-left: 1rem;
+}
 
 
 

@@ -11,12 +11,16 @@
               {{ event.name }}
             </h2>
             <h3 class="event-desciption text-dark">
-              <p>{{ event.description }}</p>
+              <p>{{ event.description | truncate(30, '...') }}</p>
             </h3>
           </nuxt-link>
           <p class="post-meta">
             Posted by
-            {{ event.uploaded_by.first_name }}
+            {{
+              event.uploaded_by[0].first_name +
+                ' ' +
+                event.uploaded_by[0].last_name
+            }}
             will be held on {{ event.date | moment('MMMM Do YYYY') }}
           </p>
         </div>
@@ -35,6 +39,15 @@
 </template>
 <script>
 export default {
+  filters: {
+    truncate(text, length, suffix) {
+      if (text.length > 15) {
+        return text.substring(0, length) + suffix
+      } else {
+        return text
+      }
+    }
+  },
   // eslint-disable-next-line vue/require-prop-types
   props: ['event']
 }
