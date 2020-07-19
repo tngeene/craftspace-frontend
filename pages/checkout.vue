@@ -15,44 +15,59 @@
               class="checkout-form"
               @submit.prevent="checkout"
             >
-              <!-- <div class="form-group">
-                <label for="first name"
-                  ><i class="zmdi zmdi-account material-icons-name"></i
-                ></label>
-                <input
-                  id="f_name"
-                  v-model="firstname"
-                  type="text"
-                  name="firstname"
-                  placeholder="First Name"
-                  required
-                />
+              <div v-if="!isAuthenticated" class="guest-form">
+                <div class="form-group">
+                  <label for="first name"
+                    ><i class="zmdi zmdi-account material-icons-name"></i
+                  ></label>
+                  <input
+                    id="f_name"
+                    v-model="guest.firstname"
+                    type="text"
+                    name="firstname"
+                    placeholder="First Name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="name"
+                    ><i class="zmdi zmdi-account material-icons-name"></i
+                  ></label>
+                  <input
+                    id="l_name"
+                    v-model="guest.last_name"
+                    type="text"
+                    name="lastname"
+                    placeholder="Last Name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="email"><i class="zmdi zmdi-email"></i></label>
+                  <input
+                    id="email"
+                    v-model="guest.email"
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="phone_number"
+                    ><i class="zmdi zmdi-account-box-phone"></i
+                  ></label>
+                  <input
+                    id="phone_number"
+                    v-model="guest.phone_number"
+                    type="text"
+                    name="phone_number"
+                    placeholder="Phone Number"
+                  />
+                </div>
               </div>
-              <div class="form-group">
-                <label for="name"
-                  ><i class="zmdi zmdi-account material-icons-name"></i
-                ></label>
-                <input
-                  id="l_name"
-                  v-model="lastname"
-                  type="text"
-                  name="lastname"
-                  placeholder="Last Name"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                <input
-                  id="email"
-                  v-model="email"
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  required
-                />
-              </div> -->
-              <div class="form-group">
+
+              <div v-if="isAuthenticated" class="form-group">
                 <label for="phone_number"
                   ><i class="zmdi zmdi-account-box-phone"></i
                 ></label>
@@ -64,42 +79,33 @@
                   placeholder="Phone Number"
                 />
               </div>
-              <!-- <div class="form-group">
-                <label for="membership_type"
-                  ><i class="zmdi zmdi-account-o"></i
-                ></label>
-                <b-form-select
-                  id="membership_type"
-                  v-model="membership_type"
-                  :options="options"
-                  type="select"
-                  name="membership_type"
-                  placeholder="Account type"
-                />
-              </div>
-              <div class="form-group">
-                <label for="password"><i class="zmdi zmdi-lock"></i></label>
-                <input
-                  id="pass"
-                  v-model="password"
-                  type="password"
-                  name="pass"
-                  placeholder="Password"
-                />
-              </div> -->
-
               <button type="submit" class="form-submit bg-dark">
                 confirm payment of {{ totalCost }}
               </button>
+              <div v-if="!isAuthenticated" class="checkout-sign-in mt-2 d-flex">
+                <p>Already a member?</p>
+                <nuxt-link to="/login" class="signup-image-link"
+                  >Login to checkout</nuxt-link
+                >
+              </div>
             </form>
           </div>
-          <div class="checkoout-image">
-            <figure>
+          <div class="checkoout-image py-3">
+            <figure class="checkout-img">
               <img
-                src="~/assets/signup/images/signup-image.jpg"
+                src="~/assets/img/online_payment.png"
+                width="380px"
+                height="380px"
                 alt="checkout image"
+                class="img-fluid"
               />
             </figure>
+            <div class="payment-methods">
+              <figure class="payment-methods">
+                <h6>Accepted payment methods</h6>
+                <img src="~/assets/img/mpesa.png" alt="mpesa" class="w-25" />
+              </figure>
+            </div>
             <nuxt-link to="/login" class="signup-image-link"
               >&copy; Craftspace</nuxt-link
             >
@@ -111,16 +117,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  middleware: 'auth',
   data() {
     return {
+      guest: {
+        firstname: '',
+        lastname: '',
+        phone_number: '',
+        email: ''
+      },
       order_items: [],
       order_total: [],
-      phone_number: ''
+      phone_number: '',
+      isHidden: true
     }
   },
   computed: {
+    ...mapGetters(['isAuthenticated']),
     cart() {
       return this.$store.getters['cart/cart']
     },
@@ -147,9 +161,12 @@ export default {
           })
         }
         await this.$axios.post('orders/add', {
+          first_name: this.guest.firstname,
+          last_name: this.guest.lastname,
+          email: this.guest.email,
           order_items: orderItems,
           order_total: parseInt(this.totalCost),
-          phone_number: this.phone_number
+          phone_number: this.phone_number || this.guest.phone_number
         })
         this.$store.commit('cart/clearCart')
         this.$toast.success('Order Succesfully Placed')
