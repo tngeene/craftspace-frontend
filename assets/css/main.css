@@ -8,13 +8,16 @@
   --grade-grey: #2c3e50; 
   --margo: #FFEFBA;
   --light-beige: #6D6027;
+
+  --grey-grad: linear-gradient(to right, #2C5364, #203A43, #0F2027);
 }
 
 html, body {
   height: 100% ;
   width: 100%;
   font-family: 'Roboto', sans-serif;
-  color: var(--light-black)
+  color: var(--light-black);
+  scroll-behavior: smooth;
 }
 .nuxt-link-exact-active.nuxt-link-active {
   color: var(--margo);
@@ -36,6 +39,10 @@ a:hover {
 .navbar {
   z-index: 9;
   width: 100%;
+}
+.nav-pills.artist-navs .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-image: var(--grey-grad) !important;
 }
 #carousel-fade {
     width: 100%;
