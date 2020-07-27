@@ -4,7 +4,7 @@
       toggleable="lg"
       type="light"
       variant="dark"
-      style="opacity: 0.85;"
+      style="transparent: 0.85;"
       class="sticky-top"
     >
       <b-navbar-brand href="/">Craftspace</b-navbar-brand>
@@ -17,6 +17,9 @@
           <b-nav-item><nuxt-link to="/home">Home</nuxt-link></b-nav-item>
           <b-nav-item><nuxt-link to="/artists">Artists</nuxt-link></b-nav-item>
           <b-nav-item><nuxt-link to="/art">Collection</nuxt-link></b-nav-item>
+          <b-nav-item
+            ><nuxt-link to="/custom-order">Custom Orders</nuxt-link></b-nav-item
+          >
           <b-nav-item
             ><nuxt-link to="/cart">
               Cart ({{ cartTotal }})

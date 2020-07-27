@@ -1,23 +1,144 @@
 <template>
   <div class="main">
-    <template v-for="profile in profiles">
-      <artist-profile :key="profile.id" :profile="profile"></artist-profile>
-    </template>
-
-    <div class="row col-12">
-      <div>
-        <h4 class="ml-3">
-          Recent Art Works
-        </h4>
-        <hr />
-      </div>
-    </div>
-    <div class="row col-12 mb-3 ml-2">
-      <template v-for="product in products">
-        <div :key="product.id" class="flipInX animated col-lg-3 col-12 mb-2">
-          <product-card :product="product"></product-card>
+    <div class="container-fluid p-3">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="text-center">
+                <i class="fa fa-user-circle fa-5x mb-3" />
+                <h2 class="text-capitalize mb-5">
+                  {{ artist.first_name + ' ' + artist.last_name }}
+                </h2>
+              </div>
+              <div class="text-center">
+                <p>
+                  <strong
+                    ><i class="fa fa-phone" aria-hidden="true"></i
+                  ></strong>
+                  {{ artist.phone_number }}
+                </p>
+                <p>
+                  <strong
+                    ><i class="fa fa-envelope" aria-hidden="true"></i
+                  ></strong>
+                  {{ artist.email }}
+                </p>
+                <p>
+                  <strong
+                    ><i class="fa fa-map-pin" aria-hidden="true"></i
+                  ></strong>
+                  <!-- {{ profile[0].birth_place }} -->
+                </p>
+                <p>
+                  <strong
+                    ><i class="fa fa-briefcase" aria-hidden="true"></i> Status:
+                  </strong>
+                  <span v-if="artist.is_active === 'true'" class="text-success"
+                    >Active</span
+                  >
+                  <span v-else class="text-warning">{{
+                    artist.status || '-'
+                  }}</span>
+                </p>
+                <div class="mt-5"></div>
+              </div>
+            </div>
+          </div>
         </div>
-      </template>
+        <div class="col-md-8">
+          <nav class="nav nav-pills nav-fill artist-navs mb-3">
+            <a
+              :class="[
+                'nav-item',
+                'nav-link',
+                'mr-1',
+                { active: activeTab === 'pieces' }
+              ]"
+              href="#"
+              @click="setActiveTab('pieces')"
+            >
+              Art Works
+            </a>
+            <a
+              :class="[
+                'nav-item',
+                'nav-link',
+                'mr-1',
+                { active: activeTab === 'events' }
+              ]"
+              href="#"
+              @click="setActiveTab('events')"
+            >
+              Events
+            </a>
+            <a
+              :class="[
+                'nav-item',
+                'nav-link',
+                'mr-1',
+                { active: activeTab === 'profile' }
+              ]"
+              href="#"
+              @click="setActiveTab('profile')"
+            >
+              Full Profile
+            </a>
+          </nav>
+          <div v-if="activeTab === 'pieces'" class="row">
+            <template v-for="product in products">
+              <div
+                :key="product.id"
+                class="bounceIn animated col-lg-3 col-md-4 col-sm-6 mb-4"
+              >
+                <product-card :product="product"></product-card>
+              </div>
+            </template>
+          </div>
+          <div v-if="activeTab === 'events'" class="row">
+            <template v-for="product in products">
+              <div
+                :key="product.id"
+                class="bounceIn animated col-lg-3 col-md-6 col-sm-6 mb-4"
+              >
+                <product-card :product="product"></product-card>
+              </div>
+            </template>
+          </div>
+          <div v-if="activeTab === 'profile'">
+            <h2 class="text-uppercase mb-3">
+              Full profile
+            </h2>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td>
+                    {{ artist.first_name }}
+                    {{ artist.last_name }}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td>{{ artist.email }}</td>
+                </tr>
+                <tr>
+                  <th>Phone</th>
+                  <td>{{ artist.phone_number }}</td>
+                </tr>
+                <tr>
+                  <th>Gender</th>
+                  <!-- <td>{{ artist.gender }}</td> -->
+                </tr>
+                <tr>
+                  <th>Date of Birth</th>
+                  <!-- <td>{{ artist.date_of_birth }}</td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -26,15 +147,15 @@
 import ProductCard from '~/components/ProductCard.vue'
 import EventCard from '~/components/EventCard.vue'
 // import ProfileCard from '~/components/ProfileCard.vue'
-import ArtistProfile from '~/components/ArtistProfile.vue'
+// import ArtistProfile from '~/components/ArtistProfile.vue'
 
 export default {
   components: {
     ProductCard,
     // eslint-disable-next-line vue/no-unused-components
-    EventCard,
+    EventCard
     // ProfileCard,
-    ArtistProfile
+    // ArtistProfile
   },
   async asyncData({ $axios, params }) {
     try {
@@ -47,9 +168,10 @@ export default {
   data() {
     return {
       artist: [],
-      // profiles: [],
+      profile: [],
       products: [],
-      events: []
+      events: [],
+      activeTab: 'pieces'
     }
   },
   mounted() {
@@ -74,12 +196,15 @@ export default {
     async getArtistProfile(id) {
       try {
         const resp = await this.$axios.$get(`/artists/profiles/?user=${id}`)
-        this.profiles = resp
+        this.profile = resp
         // eslint-disable-next-line no-console
         console.log(`response is ${resp}`)
       } catch (e) {
-        return { profiles: [] }
+        return { profile: [] }
       }
+    },
+    setActiveTab(tab) {
+      this.activeTab = tab
     }
   },
   head() {

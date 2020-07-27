@@ -15,12 +15,13 @@
               An online space everyone can enjoy, learn and discover the
               richness of African Contemporary Art.
             </h3>
-            <button type="button" class="btn btn-outline-light btn-lg">
-              View Demo
-            </button>
-            <button type="button" class="btn btn-primary btn-lg">
+            <a
+              href="#aboutSection"
+              type="button"
+              class="btn btn-primary btn-lg"
+            >
               Get Started
-            </button>
+            </a>
           </div>
         </div>
         <div class="carousel-item">
@@ -45,7 +46,7 @@
     </div>
 
     <!-- about section -->
-    <div class="container-fluid padding mt-2">
+    <div id="aboutSection" class="container-fluid padding mt-2">
       <div class="row padding align-items-lg-center">
         <div class="col-md-12 col-lg-6">
           <h2 class="title text-center">About</h2>
