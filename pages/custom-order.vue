@@ -39,6 +39,39 @@
               @change="onFileChange"
             />
           </div>
+
+          <div class="form-group">
+            <label for>Size</label>
+            <select v-model="order.size" class="form-control">
+              <option value="lg">Large</option>
+              <option value="md">Medium</option>
+              <option value="sm">Small</option>
+            </select>
+          </div>
+          <div class="form-group mb-3">
+            <label for>Description</label>
+            <textarea
+              v-model="order.description"
+              class="form-control"
+              rows="6"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for>Artist</label>
+            <select v-model="order.artist" class="form-control">
+              <option
+                v-for="artist in artists"
+                :key="artist.id"
+                :value="artist.id"
+              >
+                {{ artist.first_name }}</option
+              >
+            </select>
+          </div>
+          <div class="form-group mb-3">
+            <label for>Due Date</label>
+            <b-form-datepicker v-model="order.due_date" class="form-control" />
+          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -65,30 +98,6 @@
               </div>
             </div>
           </div>
-          <div class="form-group mb-3">
-            <label for>Description</label>
-            <textarea
-              v-model="order.description"
-              class="form-control"
-              rows="6"
-            ></textarea>
-          </div>
-          <div class="form-group">
-            <label for>Artist</label>
-            <select v-model="order.artist" class="form-control">
-              <option
-                v-for="artist in artists"
-                :key="artist.id"
-                :value="artist.id"
-              >
-                {{ artist.first_name }}</option
-              >
-            </select>
-          </div>
-          <div class="form-group mb-3">
-            <label for>Due Date</label>
-            <b-form-datepicker v-model="order.due_date" class="form-control" />
-          </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
@@ -99,8 +108,9 @@
 export default {
   async asyncData({ $axios }) {
     try {
+      // eslint-disable-next-line no-unused-vars
       const [artistRes, mediumRes] = await Promise.all([
-        $axios.$get('artists'),
+        $axios.get('artists'),
         $axios.get('art-pieces/mediums/')
       ])
       return {
@@ -121,13 +131,15 @@ export default {
         picture: '',
         due_date: '',
         medium: '',
+        size: '',
         artist: '',
         email: '',
         phone_number: ''
       },
       artists: Object,
       mediums: Object,
-      preview: ''
+      preview: '',
+      responseErrors: {}
     }
   },
   methods: {
@@ -158,14 +170,20 @@ export default {
       }
       try {
         // eslint-disable-next-line no-unused-vars
-        const response = await this.$axios.$post(
-          '/custom-orders/',
-          formData,
-          config
-        )
-        this.$router.push('/home')
+        const response = await this.$axios
+          .$post('/custom-orders/', formData, config)
+          .then((response) => {
+            if (response.status === 201) {
+              this.$toast.success(
+                'Your order has been received, we will notify you as soon as it is ready'
+              )
+            }
+          })
+          .catch((errors) => {
+            this.responseErrors = errors.response.data
+            this.$toast.error(`${this.response}`)
+          })
       } catch (e) {
-        // this.$toast.error(`${this.order.data}`)
         // eslint-disable-next-line no-console
         console.log(e)
       }

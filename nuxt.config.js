@@ -1,5 +1,8 @@
+const env = require('dotenv').config()
 export default {
   mode: 'universal',
+  target: 'server',
+  env: env.parsed,
   /*
    ** Headers of the page
    */
@@ -84,7 +87,8 @@ export default {
     '@nuxtjs/auth',
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
-    '@neneos/nuxt-animate.css'
+    '@neneos/nuxt-animate.css',
+    '@nuxtjs/dotenv'
   ],
   // toast settings
   toast: {
@@ -114,7 +118,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api/v1/'
+    baseURL: process.env.baseAPIUrl
   },
   auth: {
     localStorage: false,
