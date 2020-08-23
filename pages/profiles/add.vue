@@ -41,7 +41,7 @@ export default {
   methods: {
     async postArtistProfile() {
       try {
-        await this.$axios.post('artists/profile/add', {
+        await this.$axios.post('artists/profiles/', {
           bio: this.bio,
           county: this.county,
           birth_place: this.birth_place,
@@ -57,7 +57,7 @@ export default {
     },
     async postCollectoProfile() {
       try {
-        await this.$axios.post('collectors/profile', {
+        await this.$axios.post('collectors/profiles/', {
           bio: this.bio,
           county: this.county,
           birth_place: this.birth_place,
