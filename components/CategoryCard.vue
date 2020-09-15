@@ -1,6 +1,6 @@
 <template>
   <div class="card bg-dark text-white category-card" @click="onClick">
-    <img class="card-img" :src="category.cover_photo" alt="Card image" />
+    <img class="card-img" :src="category.cover_photo" :alt="category.name" />
     <div class="card-img-overlay">
       <p class="card-text d-flex justify-content-center">
         {{ category.name }}

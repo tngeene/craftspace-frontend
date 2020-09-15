@@ -3,10 +3,16 @@
     <div class="container-fluid p-3">
       <div class="row">
         <div class="col-md-4 mb-3">
-          <div class="card shadow-sm">
+          <div class="card shadow-sm mb-3">
             <div class="card-body">
               <div class="text-center">
-                <i class="fa fa-user-circle fa-5x mb-3" />
+                <div v-if="profile.photo">
+                  <img :src="profile.photo" :alt="profile.user" class="w-50" />
+                </div>
+                <div v-else>
+                  <i class="fa fa-user-circle fa-5x mb-3" />
+                </div>
+
                 <h2 class="text-capitalize mb-5">
                   {{ artist.first_name + ' ' + artist.last_name }}
                 </h2>
@@ -14,7 +20,7 @@
               <div class="text-center">
                 <p>
                   <strong
-                    ><i class="fa fa-phone" aria-hidden="true"></i
+                    ><i class="fa fa-phone fa-rotate-90" aria-hidden="true"></i
                   ></strong>
                   {{ artist.phone_number }}
                 </p>
@@ -44,6 +50,9 @@
                 <div class="mt-5"></div>
               </div>
             </div>
+          </div>
+          <div class="card shadow-sm mb-3">
+            <RatingForm :artist-profile="artist" />
           </div>
         </div>
         <div class="col-md-8">
@@ -146,20 +155,24 @@
 <script>
 import ProductCard from '~/components/ProductCard.vue'
 import EventCard from '~/components/EventCard.vue'
+import RatingForm from '~/components/RatingForm'
 // import ProfileCard from '~/components/ProfileCard.vue'
 // import ArtistProfile from '~/components/ArtistProfile.vue'
 
 export default {
   components: {
     ProductCard,
+    RatingForm,
     // eslint-disable-next-line vue/no-unused-components
     EventCard
     // ProfileCard,
     // ArtistProfile
   },
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['artistProfile'],
   async asyncData({ $axios, params }) {
     try {
-      const artist = await $axios.$get(`/auth/users/${params.id}`)
+      const artist = await $axios.$get(`/auth/custom-users/${params.id}/`)
       return { artist }
     } catch (e) {
       return { artist: null }
@@ -168,7 +181,7 @@ export default {
   data() {
     return {
       artist: [],
-      profile: [],
+      profile: '',
       products: [],
       events: [],
       activeTab: 'pieces'
@@ -193,12 +206,19 @@ export default {
         return { products: [] }
       }
     },
-    async getArtistProfile(id) {
+    getArtistProfile(id) {
       try {
-        const resp = await this.$axios.$get(`/artists/profiles/?user=${id}`)
-        this.profile = resp
-        // eslint-disable-next-line no-console
-        console.log(`response is ${resp}`)
+        this.$axios.$get(`/artists/profiles/?user=${id}`).then((response) => {
+          if (response.status === 200) {
+            this.profile = response.data
+            // eslint-disable-next-line no-console
+            console.log(`profile is ${this.profile}`)
+          } else {
+            // eslint-disable-next-line no-console
+            console.log(`profile is ${this.profile}`)
+            this.$toast.error(`${response.data.detail}`)
+          }
+        })
       } catch (e) {
         return { profile: [] }
       }
