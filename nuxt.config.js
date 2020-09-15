@@ -121,29 +121,29 @@ export default {
     baseURL: process.env.baseAPIUrl
   },
   auth: {
-    localStorage: false,
-    cookie: {
-      options: {
-        expires: 7 // sets the user to be locked out after 7 days of inactivity
-      }
-    },
     strategies: {
       local: {
         endpoints: {
           login: {
-            url: 'auth/token/login',
+            url: 'auth/token/login/',
             method: 'post',
             propertyName: 'auth_token'
           },
-          user: { url: 'auth/users/me', method: 'get', propertyName: false },
-          logout: false
+          user: {
+            url: 'auth/users/me/',
+            method: 'get',
+            propertyName: false
+          },
+          logout: {
+            url: 'auth/token/logout/',
+            method: 'post'
+          }
         },
         tokenType: 'Token',
         tokenRequired: true
       }
     }
   },
-
   /*
    ** Build configuration
    */

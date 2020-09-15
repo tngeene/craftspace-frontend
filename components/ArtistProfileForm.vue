@@ -124,23 +124,6 @@ export default {
         this.$toast.global.my_error() // Using custom toast
         this.$toast.error('Could not  Update Profile :(')
       }
-    },
-    async postCollectoProfile() {
-      try {
-        await this.$axios.post('collectors/profile', {
-          bio: this.bio,
-          county: this.county,
-          birth_place: this.birth_place,
-          billing_address: this.billing_address,
-          photo: this.photo
-        })
-        this.$toast.success('Profile Succesfully Updated')
-        this.$router.push('/home')
-      } catch (e) {
-        // this.error = e.response.data.detail
-        this.$toast.global.my_error() // Using custom toast
-        this.$toast.error('Could not  Update Profile :(')
-      }
     }
   },
   head() {

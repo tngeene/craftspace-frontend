@@ -153,7 +153,7 @@ export default {
         formData.append(data, this.profile[data])
       }
       try {
-        await this.$axios.post('collectors/profile/', formData, config)
+        await this.$axios.post('collectors/profiles/', formData, config)
         this.$toast.success('Profile Succesfully Updated')
         this.$router.push('/profile')
       } catch (e) {
