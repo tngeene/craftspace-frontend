@@ -8,6 +8,7 @@
   --grade-grey: #2c3e50; 
   --margo: #FFEFBA;
   --light-beige: #6D6027;
+  --light-purple: #302b63;
 
   --grey-grad: linear-gradient(to right, #2C5364, #203A43, #0F2027);
 }
@@ -306,6 +307,30 @@ hr.light {
 }
 
 
+.event-month {
+  color: var(--light-purple);
+}
+.event-date {
+  font-size:  1rem;
+}
+.event-card img {
+  height: 17.875rem;
+  z-index: 1;
+}
+.event-card {
+  border-radius: 0.5rem;
+  width: 20rem;
+}
+.event-price {
+  z-index: 2;
+  transform: translateY(-17.5rem);
+}
+.event-card-body {
+  line-height: 0.3rem;
+}
+.event-card-body .event-venue {
+  font-size: 0.8rem;
+}
 
 /*---Media Queries --*/
 @media (max-width: 992px) {

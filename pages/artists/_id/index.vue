@@ -6,14 +6,14 @@
           <div class="card shadow-sm mb-3">
             <div class="card-body">
               <div class="text-center">
-                <div v-if="profile.photo">
+                <div v-show="profile.photo">
                   <img :src="profile.photo" :alt="profile.user" class="w-50" />
                 </div>
-                <div v-else>
-                  <i class="fa fa-user-circle fa-5x mb-3" />
+                <div v-show="!profile.photo">
+                  <i class="fa fa-user-circle fa-5x mb-2" />
                 </div>
 
-                <h2 class="text-capitalize mb-5">
+                <h2 class="text-capitalize py-2">
                   {{ artist.first_name + ' ' + artist.last_name }}
                 </h2>
               </div>
@@ -32,20 +32,15 @@
                 </p>
                 <p>
                   <strong
-                    ><i class="fa fa-map-pin" aria-hidden="true"></i
-                  ></strong>
-                  <!-- {{ profile[0].birth_place }} -->
+                    ><i class="fa fa-map-pin" aria-hidden="true"></i>
+                    {{ profile.county }}
+                  </strong>
                 </p>
                 <p>
                   <strong
                     ><i class="fa fa-briefcase" aria-hidden="true"></i> Status:
                   </strong>
-                  <span v-if="artist.is_active === 'true'" class="text-success"
-                    >Active</span
-                  >
-                  <span v-else class="text-warning">{{
-                    artist.status || '-'
-                  }}</span>
+                  <span class="text-success">Active</span>
                 </p>
                 <div class="mt-5"></div>
               </div>
@@ -98,26 +93,24 @@
             <template v-for="product in products">
               <div
                 :key="product.id"
-                class="bounceIn animated col-lg-3 col-md-4 col-sm-6 mb-4"
+                class="bounceIn animated col-lg-4 col-md-3 col-sm-6 mb-4"
               >
                 <product-card :product="product"></product-card>
               </div>
             </template>
           </div>
           <div v-if="activeTab === 'events'" class="row">
-            <template v-for="product in products">
-              <div
-                :key="product.id"
-                class="bounceIn animated col-lg-3 col-md-6 col-sm-6 mb-4"
-              >
-                <product-card :product="product"></product-card>
-              </div>
-            </template>
+            <EventCardHome
+              v-for="event in events"
+              :key="event.id"
+              :event="event"
+              class="col-md-4"
+            />
           </div>
-          <div v-if="activeTab === 'profile'">
-            <h2 class="text-uppercase mb-3">
-              Full profile
-            </h2>
+          <div v-if="activeTab === 'profile'" class="text-center">
+            <h4 class="text-capitalize mb-3">
+              Artist Details
+            </h4>
             <table class="table table-striped">
               <tbody>
                 <tr>
@@ -136,12 +129,8 @@
                   <td>{{ artist.phone_number }}</td>
                 </tr>
                 <tr>
-                  <th>Gender</th>
-                  <!-- <td>{{ artist.gender }}</td> -->
-                </tr>
-                <tr>
-                  <th>Date of Birth</th>
-                  <!-- <td>{{ artist.date_of_birth }}</td> -->
+                  <th>County</th>
+                  <td>{{ profile.county }}</td>
                 </tr>
               </tbody>
             </table>
@@ -153,8 +142,8 @@
 </template>
 
 <script>
-import ProductCard from '~/components/ProductCard.vue'
-import EventCard from '~/components/EventCard.vue'
+import ProductCard from '~/components/ProductCard'
+import EventCardHome from '~/components/EventCardHome'
 import RatingForm from '~/components/RatingForm'
 // import ProfileCard from '~/components/ProfileCard.vue'
 // import ArtistProfile from '~/components/ArtistProfile.vue'
@@ -164,7 +153,7 @@ export default {
     ProductCard,
     RatingForm,
     // eslint-disable-next-line vue/no-unused-components
-    EventCard
+    EventCardHome
     // ProfileCard,
     // ArtistProfile
   },
@@ -181,7 +170,7 @@ export default {
   data() {
     return {
       artist: [],
-      profile: '',
+      profile: Object,
       products: [],
       events: [],
       activeTab: 'pieces'
@@ -190,6 +179,7 @@ export default {
   mounted() {
     this.getArtistProfile(this.$route.params.id)
     this.getArtistProducts(this.$route.params.id)
+    this.getArtistEvents(this.$route.params.id)
   },
   methods: {
     async getArtistProducts(id) {
@@ -208,20 +198,30 @@ export default {
     },
     getArtistProfile(id) {
       try {
-        this.$axios.$get(`/artists/profiles/?user=${id}`).then((response) => {
+        this.$axios.get(`/artists/profiles/?user=${id}`).then((response) => {
           if (response.status === 200) {
-            this.profile = response.data
-            // eslint-disable-next-line no-console
-            console.log(`profile is ${this.profile}`)
+            this.profile = response.data[0]
           } else {
             // eslint-disable-next-line no-console
             console.log(`profile is ${this.profile}`)
-            this.$toast.error(`${response.data.detail}`)
+            this.$toast.error(`${response.data[0].detail}`)
           }
         })
       } catch (e) {
         return { profile: [] }
       }
+    },
+    getArtistEvents(id) {
+      this.$axios
+        .get(`events/?uploaded_by=${id}`)
+        .then((response) => {
+          if (response.status === 200) {
+            this.events = response.data
+          }
+        })
+        .catch((error) => {
+          if (error.response) this.$toast.show(`${error.response.data.detail}`)
+        })
     },
     setActiveTab(tab) {
       this.activeTab = tab
