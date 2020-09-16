@@ -43,7 +43,8 @@ export default {
     return {
       profile: '',
       rating: '',
-      average_rating: ''
+      average_rating: '',
+      profile_id: ''
     }
   },
   computed: {
@@ -54,11 +55,10 @@ export default {
   },
   methods: {
     async postRating() {
-      this.$toast.show('Posting Rating')
       try {
         await this.$axios
           .post('artists/profiles/post-rating/', {
-            profile: this.artistProfile.id,
+            profile: this.profile_id,
             rating: this.rating
           })
           .then((response) => {
@@ -75,9 +75,10 @@ export default {
     },
     getAverageRating(id) {
       try {
-        this.$axios.get(`artists/profiles/${id}/`).then((response) => {
+        this.$axios.get(`artists/profiles/?user=${id}`).then((response) => {
           if (response.status === 200) {
-            this.average_rating = response.data.average_rating
+            this.average_rating = response.data[0].average_rating
+            this.profile_id = response.data[0].id
           }
         })
       } catch (e) {
