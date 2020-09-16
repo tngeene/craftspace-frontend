@@ -1,40 +1,38 @@
 <template>
-  <div class="container event-card-home">
-    <div class="row">
-      <div class="col-md-4 col-sm-4 mx-auto">
-        <img style="width:100%" :src="event.banner" />
-      </div>
-      <div class="col-md-8 col-sm-8 mx-auto">
-        <div class="event-preview">
-          <nuxt-link :to="`events/${event.id}`">
-            <h2 class="event-title text-dark">
-              {{ event.name }}
-            </h2>
-            <h3 class="event-desciption text-dark">
-              <p>{{ event.description | truncate(30, '...') }}</p>
-            </h3>
-          </nuxt-link>
-          <p class="post-meta">
-            Posted by
-            {{
-              event.uploaded_by[0].first_name +
-                ' ' +
-                event.uploaded_by[0].last_name
-            }}
-            will be held on {{ event.date | moment('MMMM Do YYYY') }}
-          </p>
+  <div class="mb-3">
+    <nuxt-link :to="`/events/${event.id}`">
+      <div class="card event-card">
+        <img :src="event.banner" class="card-img-top" :alt="event.name" />
+        <div class="event-price px-2">
+          <span v-if="event.ticket_price" class="badge badge-light"
+            >Ksh {{ event.ticket_price }}</span
+          >
+          <span v-else class="badge badge-light">Free</span>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4 text-center">
+              <p class="event-month">
+                {{ event.date | moment('MMM') }}
+              </p>
+              <p class="event-date font-weight-bold">
+                {{ event.date | moment('Do') }}
+              </p>
+            </div>
+            <div class="col-8 event-card-body">
+              <p>{{ event.name }}</p>
+              <p class="text-muted">
+                {{ event.description | truncate(10, '...') }}
+              </p>
+              <p class="text-muted event-venue mt-4">
+                <i class="fa fa-map-pin" aria-hidden="true"></i>
+                {{ event.venue }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- <div class="col-md-2 col-sm mx-auto">
-        <nuxt-link
-          :to="`/events/${event.id}/edit/`"
-          class="btn btn-sm btn-primary"
-        >
-          Edit
-        </nuxt-link>
-      </div> -->
-    </div>
-    <hr />
+    </nuxt-link>
   </div>
 </template>
 <script>

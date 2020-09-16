@@ -94,14 +94,15 @@
             >
           </div>
         </div>
-        <template v-for="event in events.slice(0, 3)">
-          <div
+        <!-- start events -->
+        <div class="row mx-auto">
+          <EventCardHome
+            v-for="event in events.slice(0, 4)"
             :key="event.id"
-            class="fadeInUp animated col-lg-8 col-md-4 col-sm-6 mb-4"
-          >
-            <event-card-home :event="event"></event-card-home>
-          </div>
-        </template>
+            :event="event"
+            class="col-md-3"
+          />
+        </div>
       </div>
     </div>
     <div class="container-fluid-padding">
@@ -155,42 +156,49 @@ export default {
       this.sliding = true
     },
     onSlideEnd(slide) {
-      this.sliding = false
+      this.sliding = true
     },
-    async getEvents() {
+    getEvents() {
       const config = {
         headers: {
           Accept: 'application/json'
         }
       }
       try {
-        const events = await this.$axios.get(`events/`, config)
-        this.events = events.data
-        // eslint-disable-next-line no-console
-        console.log(`resp is ${events.data}`)
+        this.$axios.get(`events/`, config).then((response) => {
+          if (response.status === 200) {
+            this.events = response.data
+          }
+        })
       } catch (e) {
         return { events: [] }
       }
     },
     latestEvents() {
-      return this.events.splice(1, 3)
+      return this.events.splice(1, 4)
     },
-    async getProducts() {
+    getProducts() {
       // method for fetching art pieces in storage
       const config = {
         headers: {
           Accept: 'application/json'
         }
       }
-      try {
-        const products = await this.$axios.get(
-          `art-pieces/all-art-pieces/`,
-          config
-        )
-        this.products = products.data
-      } catch (e) {
-        return { products: [] }
-      }
+      this.$axios
+        .get(`art-pieces/all-art-pieces/`, config)
+        .then((response) => {
+          if (response.status === 200) {
+            this.products = response.data
+          }
+        })
+        .catch((error) => {
+          if (error.response) this.$toast.show(`${error.response.data.detail}`)
+          else if (error.request) {
+            this.$toast.error(
+              'We are experiencing technical difficulties atm 😬'
+            )
+          }
+        })
     }
   },
   head() {

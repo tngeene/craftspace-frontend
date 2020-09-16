@@ -5,19 +5,19 @@
       <div class="col-12 text-right mb-4">
         <div class="d-flex justify-content-between mt-2">
           <h2>Upcoming Events and Exhibitions</h2>
-          <nuxt-link to="/events/add" class="btn btn-dark ml-2"
+          <nuxt-link to="/events/add" class="btn btn-md btn-dark ml-2"
             >Upload Event</nuxt-link
           >
         </div>
       </div>
-      <template v-for="event in events">
-        <div
+      <div class="row mx-auto">
+        <EventCardHome
+          v-for="event in events"
           :key="event.id"
-          class="fadeInUp animated col-lg-8 col-md-4 col-sm-6 mb-4"
-        >
-          <event-card-home :event="event"></event-card-home>
-        </div>
-      </template>
+          :event="event"
+          class="bounceIn animated col-md-3"
+        />
+      </div>
     </div>
   </main>
 </template>
