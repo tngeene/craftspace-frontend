@@ -331,6 +331,13 @@ hr.light {
 .event-card-body .event-venue {
   font-size: 0.8rem;
 }
+.sidebar-menu ul li a {
+  line-height: 1.5rem !important;
+  margin-top: 3.5rem;
+}
+.b-sidebar {
+  top: 4.0625rem !important;
+}
 
 /*---Media Queries --*/
 @media (max-width: 992px) {

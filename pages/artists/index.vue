@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ArtistCard from '~/components/ArtistCard'
+import ArtistCard from '~/components/Artists/ArtistCard'
 export default {
   components: {
     ArtistCard

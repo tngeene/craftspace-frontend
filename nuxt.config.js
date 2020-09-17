@@ -25,6 +25,10 @@ export default {
       },
       {
         rel: 'stylesheet',
+        href: 'css/themify-icons/css/themify-icons.css'
+      },
+      {
+        rel: 'stylesheet',
         href:
           'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
       }

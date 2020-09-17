@@ -9,7 +9,6 @@
         <div class="signup-content">
           <div class="signup-form mt-2">
             <h2 class="form-title">Sign up</h2>
-            <Notification v-if="error" :message="error" />
             <form
               id="register-form"
               method="post"
@@ -140,13 +139,8 @@
 </template>
 
 <script>
-import Notification from '~/components/Notification'
-
 export default {
   middleware: 'guest',
-  components: {
-    Notification
-  },
 
   data() {
     return {
