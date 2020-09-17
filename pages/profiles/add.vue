@@ -16,8 +16,8 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import ArtistProfileForm from '~/components/ArtistProfileForm'
-import CollectorProfileForm from '~/components/CollectorProfileForm'
+import ArtistProfileForm from '~/components/Artists/ArtistProfileForm'
+import CollectorProfileForm from '~/components/Collectors/CollectorProfileForm'
 
 export default {
   middleware: 'auth',

@@ -1,6 +1,5 @@
 <template>
   <main class="container my-5">
-    <Notification v-if="error" :message="error" />
     <div class="row">
       <div class="col-md-6 mb-4">
         <img
@@ -84,10 +83,8 @@
 </template>
 
 <script>
-import Notification from '~/components/Notification'
 // gets the individual event from the db for editing
 export default {
-  components: Notification,
   async asyncData({ $axios, params }) {
     try {
       const event = await $axios.$get(`/events/${params.id}`)

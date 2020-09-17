@@ -112,8 +112,8 @@
 </template>
 
 <script>
-import ProductDescriptionCard from '~/components/ProductDescriptionCard'
-import ProductCard from '~/components/ProductCard'
+import ProductDescriptionCard from '~/components/Products/ProductDescriptionCard'
+import ProductCard from '~/components/Products/ProductCard'
 export default {
   // eslint-disable-next-line vue/no-unused-components
   components: { ProductDescriptionCard, ProductCard },

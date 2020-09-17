@@ -22,7 +22,6 @@
 
           <div class="signin-form">
             <h2 class="form-title">Sign In</h2>
-            <Notification v-if="error" :message="error" />
             <form
               id="login-form"
               method="post"
@@ -80,14 +79,8 @@
 </template>
 
 <script>
-import Notification from '~/components/Notification'
-
 export default {
   middleware: 'guest',
-  components: {
-    Notification
-  },
-
   data() {
     return {
       email: '',

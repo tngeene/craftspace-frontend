@@ -100,7 +100,7 @@
             </template>
           </div>
           <div v-if="activeTab === 'events'" class="row">
-            <EventCardHome
+            <EventCard
               v-for="event in events"
               :key="event.id"
               :event="event"
@@ -142,8 +142,8 @@
 </template>
 
 <script>
-import ProductCard from '~/components/ProductCard'
-import EventCardHome from '~/components/EventCardHome'
+import ProductCard from '~/components/Products/ProductCard'
+import EventCard from '~/components/Events/EventCard'
 import RatingForm from '~/components/RatingForm'
 // import ProfileCard from '~/components/ProfileCard.vue'
 // import ArtistProfile from '~/components/ArtistProfile.vue'
@@ -153,7 +153,7 @@ export default {
     ProductCard,
     RatingForm,
     // eslint-disable-next-line vue/no-unused-components
-    EventCardHome
+    EventCard
     // ProfileCard,
     // ArtistProfile
   },

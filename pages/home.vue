@@ -96,7 +96,7 @@
         </div>
         <!-- start events -->
         <div class="row mx-auto">
-          <EventCardHome
+          <EventCard
             v-for="event in events.slice(0, 4)"
             :key="event.id"
             :event="event"
@@ -130,12 +130,12 @@
 </template>
 
 <script>
-import EventCardHome from '~/components/EventCardHome'
-import ProductCard from '~/components/ProductCard'
+import EventCard from '~/components/Events/EventCard'
+import ProductCard from '~/components/Products/ProductCard'
 export default {
   components: {
     // eslint-disable-next-line vue/no-unused-components
-    EventCardHome,
+    EventCard,
     ProductCard
   },
   data() {

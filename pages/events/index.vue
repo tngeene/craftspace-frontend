@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="row mx-auto">
-        <EventCardHome
+        <EventCard
           v-for="event in events"
           :key="event.id"
           :event="event"
@@ -22,10 +22,10 @@
   </main>
 </template>
 <script>
-import EventCardHome from '~/components/EventCardHome'
+import EventCard from '~/components/Events/EventCard'
 export default {
   components: {
-    EventCardHome
+    EventCard
   },
   async asyncData({ $axios, params }) {
     const config = {
