@@ -7,7 +7,7 @@
       <div class="col-md-8 text-center my-auto">
         <div class="card-body">
           <h5 class="card-title"></h5>
-          <p class="card-text">
+          <p class="card-text p-2">
             <i class="fa fa-info"></i>
             {{ profile.bio }}
           </p>
@@ -26,18 +26,33 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'ProfileCard',
-  // eslint-disable-next-line vue/require-prop-types
-  props: ['profile'],
+  middleware: 'auth',
   data() {
     return {
-      rating: 0
+      profile: ''
     }
   },
+  computed: {
+    ...mapGetters(['loggedInUser'])
+  },
+  mounted() {
+    this.getProfile(this.loggedInUser.id)
+  },
   methods: {
-    setRating(rating) {
-      this.rating = rating
+    async getProfile(id) {
+      await this.$axios
+        .get(`artists/profiles/?user=${id}`)
+        .then((response) => {
+          if (response.status === 200) {
+            this.profile = response.data[0]
+          }
+        })
+        .catch((error) => {
+          if (error.response) this.$toast.show(`${error.response.data.detail}`)
+        })
     }
   }
 }

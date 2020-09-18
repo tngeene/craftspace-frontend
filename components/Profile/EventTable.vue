@@ -44,7 +44,9 @@
           <td>
             <button
               class="btn btn-sm btn-danger"
-              @click="deleteEvent(event.id)"
+              data-toggle="modal"
+              data-target="#eventModal"
+              @click="modalInfo(event)"
             >
               Delete
             </button>
@@ -58,17 +60,17 @@
       </nuxt-link>
     </div>
     <div
-      id="exampleModal"
+      id="eventModal"
       class="modal fade"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="eventModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="exampleModalLabel" class="modal-title">
+            <h5 id="eventModalLabel" class="modal-title">
               Delete Event
             </h5>
             <button
@@ -84,18 +86,14 @@
             <p>Are you sure you want to delete {{ selectedEvent.name }}?</p>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
               Dismiss
             </button>
             <button
               type="button"
               class="btn btn-danger"
               data-dismiss="modal"
-              @click="deleteProduct(selectedEvent.id)"
+              @click="deleteEvent(selectedEvent.id)"
             >
               Confirm
             </button>
@@ -141,14 +139,17 @@ export default {
       }
     },
     async deleteEvent(id) {
-      try {
-        await this.$axios.delete(`events/${id}`)
-        this.$toast.success('Events Successfully Deleted')
-        this.$router.push('/profile')
-      } catch (e) {
-        this.$toast.danger('Could Not delete')
-        return e
-      }
+      await this.$axios
+        .delete(`events/${id}`)
+        .then((response) => {
+          if (response.status === 204) {
+            window.location.reload(true)
+            this.$toast.success('Event Successfully Deleted')
+          }
+        })
+        .catch((error) => {
+          if (error.response) this.$toast.show(`${error.response.data.detail}`)
+        })
     },
     modalInfo(event) {
       this.selectedEvent = event
