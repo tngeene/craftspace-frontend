@@ -3,14 +3,7 @@
     <div class="row">
       <SideNav style="height:20rem;" />
       <div class="col-9 mx-auto">
-        <template v-for="profile in profiles">
-          <div :key="profile.id" class="mt-3">
-            <profile-card
-              v-if="profileIsVisible && !productsIsVisible && !eventsIsVisible"
-              :profile="profile"
-            ></profile-card>
-          </div>
-        </template>
+        <ProfileCard />
         <!-- products table -->
         <div class="products-table">
           <ProductTable />
@@ -38,22 +31,12 @@ import SideNav from '~/components/SideNav'
 
 export default {
   components: {
-    // eslint-disable-next-line vue/no-unused-components
     ProductTable,
     ProfileCard,
     EventTable,
     SideNav
   },
   middleware: 'has-profile',
-  filters: {
-    truncate(text, length, suffix) {
-      if (text.length > 15) {
-        return text.substring(0, length) + suffix
-      } else {
-        return text
-      }
-    }
-  },
   data() {
     return {
       profiles: [],
@@ -67,23 +50,10 @@ export default {
   computed: {
     ...mapGetters(['loggedInUser'])
   },
-  mounted() {
-    this.getProfile(this.loggedInUser.id)
-  },
   methods: {
     async logout() {
       await this.$auth.logout()
       this.$toast.success('Successfully Logged Out')
-    },
-    async getProfile(id) {
-      try {
-        const resp = await this.$axios.get(`artists/profiles/?user=${id}`)
-        // eslint-disable-next-line no-console
-        console.log(`resp is ${resp.data}`)
-        this.profiles = resp.data
-      } catch (e) {
-        return { profiles: [] }
-      }
     },
     toggleSideNav() {
       // eslint-disable-next-line prefer-const
@@ -99,12 +69,7 @@ export default {
   },
   head() {
     return {
-      title:
-        'Craftspace | Profile' +
-        ' ' +
-        this.loggedInUser.first_name +
-        ' ' +
-        this.loggedInUser.last_name
+      title: `Craftspace | Profile | ${this.loggedInUser.first_name} ${this.loggedInUser.last_name}`
     }
   }
 }

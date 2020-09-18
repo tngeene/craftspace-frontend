@@ -45,7 +45,7 @@
             <button
               class="btn btn-sm btn-danger"
               data-toggle="modal"
-              data-target="#exampleModal"
+              data-target="#productModal"
               @click="modalInfo(product)"
             >
               Delete
@@ -60,17 +60,17 @@
       </nuxt-link>
     </div>
     <div
-      id="exampleModal"
+      id="productModal"
       class="modal fade"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="productModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 id="exampleModalLabel" class="modal-title">
+            <h5 id="productModalLabel" class="modal-title">
               Delete Product
             </h5>
             <button
@@ -86,11 +86,7 @@
             <p>Are you sure you want to delete {{ selectedProduct.name }}?</p>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
               Dismiss
             </button>
             <button
@@ -155,14 +151,17 @@ export default {
       }
     },
     async deleteProduct(id) {
-      try {
-        await this.$axios.delete(`art-pieces/${id}/delete`)
-        this.$toast.success('Piece Successfully Deleted')
-        this.$router.redirect('/profile')
-      } catch (e) {
-        this.$toast.error('Could Not delete')
-        return e.data
-      }
+      await this.$axios
+        .delete(`art-pieces/${id}/delete`)
+        .then((response) => {
+          if (response.status === 204) {
+            window.location.reload(true)
+            this.$toast.success('Piece Successfully deleted')
+          }
+        })
+        .catch((error) => {
+          if (error.response) this.$toast.show(`${error.response.data.detail}`)
+        })
     },
     modalInfo(product) {
       this.selectedProduct = product

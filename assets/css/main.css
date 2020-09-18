@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Inconsolata:wght@300&family=Source+Code+Pro:ital,wght@1,300&display=swap');
 
 :root {
   --blue-grad: linear-gradient(to right, 315deg, #ffa69e 0%, #5d4954 74%);
@@ -16,9 +17,12 @@
 html, body {
   height: 100% ;
   width: 100%;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Crimson Text', serif;
   color: var(--light-black);
   scroll-behavior: smooth;
+}
+p {
+  font-size: 1.3rem;
 }
 .nuxt-link-exact-active.nuxt-link-active {
   color: var(--margo);

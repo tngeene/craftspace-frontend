@@ -152,15 +152,20 @@ export default {
       for (const data in this.profile) {
         formData.append(data, this.profile[data])
       }
-      try {
-        await this.$axios.post('collectors/profiles/', formData, config)
-        this.$toast.success('Profile Succesfully Updated')
-        this.$router.push('/profile')
-      } catch (e) {
-        // this.error = e.response.data.detail
-        this.$toast.global.my_error() // Using custom toast
-        this.$toast.error('Could not  Update Profile :(')
-      }
+
+      await this.$axios
+        .post('collectors/profiles/', formData, config)
+        .then((response) => {
+          if (response.status === 201) {
+            this.$toast.success('Profile Succesfully Updated')
+            this.$router.push('/profile')
+          }
+        })
+        .catch((error) => {
+          if (error.response) {
+            this.$toast.show(`${error.response.data.detail}`)
+          }
+        })
     }
   },
   head() {
