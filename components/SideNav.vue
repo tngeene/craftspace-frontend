@@ -1,48 +1,70 @@
 <template>
-  <div class="text-center side-menu">
-    <b-sidebar
-      id="sidebar-variant"
-      bg-variant="dark"
-      text-variant="light"
-      shadow
-      class="text-white"
-    >
-      <div class="px-3 py-2">
-        <nav class="sidebar-menu">
-          <ul id="nav-accordion">
-            <li class="sub-menu">
-              <a href="">
-                <i class="ti-pencil"></i>
-                <span>Art Work</span>
-              </a>
-            </li>
-            <li class="sub-menu">
-              <a href="#">
-                <i class="ti-package"></i>
-                <span>Custom Orders</span>
-              </a>
-            </li>
-            <li class="sub-menu">
-              <a href="#">
-                <i class="ti-calendar"></i>
-                <span>Events</span>
-              </a>
-            </li>
-            <li class="sub-menu">
-              <a href="#">
-                <i class="ti-user"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-          </ul>
-          <span class="mx-3 justify-content-center">
-            <h5 class="text-uppercase" @click="logout">
-              <i class="ti-power-off"> Sign Out</i>
-            </h5>
-          </span>
-        </nav>
-      </div>
-    </b-sidebar>
+  <div class="sidebar">
+    <ul>
+      <li class="sub-menu">
+        <a
+          href=""
+          :class="[
+            'nav-item',
+            'nav-link',
+            { active: activeTab === 'products' }
+          ]"
+          @click="setActiveTab('products')"
+        >
+          <i class="ti-pencil"></i>
+          <span>Art Work</span>
+        </a>
+      </li>
+      <li v-if="loggedInUser.membership_type == 'Collector'" class="sub-menu">
+        <a
+          href=""
+          :class="['nav-item', 'nav-link', { active: activeTab === 'orders' }]"
+          @click="setActiveTab('orders')"
+        >
+          <i class="ti-package"></i>
+          <span>Orders</span>
+        </a>
+      </li>
+      <li class="sub-menu">
+        <a
+          href=""
+          :class="[
+            'nav-item',
+            'nav-link',
+            { active: activeTab === 'custom-orders' }
+          ]"
+          @click="setActiveTab('custom-orders')"
+        >
+          <i class="ti-package"></i>
+          <span>Custom Orders</span>
+        </a>
+      </li>
+      <li class="sub-menu">
+        <a
+          href=""
+          :class="['nav-item', 'nav-link', { active: activeTab === 'events' }]"
+          @click="setActiveTab('events')"
+        >
+          <i class="ti-calendar"></i>
+          <span>Events</span>
+        </a>
+      </li>
+      <li class="sub-menu">
+        <a
+          href=""
+          :class="['nav-item', 'nav-link', { active: activeTab === 'profile' }]"
+          @click="setActiveTab('profile')"
+        >
+          <i class="ti-user"></i>
+          <span>My Profile</span>
+        </a>
+      </li>
+    </ul>
+    <span class="mx-3 text-center">
+      <h5 class="text-uppercase" @click="logout">
+        <i class="ti-power-off"> Sign Out</i>
+      </h5>
+    </span>
   </div>
 </template>
 
@@ -50,6 +72,11 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'SideNav',
+  data() {
+    return {
+      activeTab: 'products'
+    }
+  },
   computed: {
     ...mapGetters(['isAuthenticated', 'loggedInUser'])
   },
@@ -57,6 +84,9 @@ export default {
     async logout() {
       await this.$auth.logout()
     }
+  },
+  setActiveTab(tab) {
+    this.activeTab = tab
   }
 }
 </script>
