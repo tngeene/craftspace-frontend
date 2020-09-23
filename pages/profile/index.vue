@@ -10,6 +10,20 @@
                 :class="[
                   'nav-item',
                   'nav-link',
+                  { active: activeTab === 'profile' }
+                ]"
+                @click="setActiveTab('profile')"
+              >
+                <i class="ti-user"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li class="sub-menu">
+              <a
+                href="#"
+                :class="[
+                  'nav-item',
+                  'nav-link',
                   { active: activeTab === 'products' }
                 ]"
                 @click="setActiveTab('products')"
@@ -63,20 +77,6 @@
                 <span>Events</span>
               </a>
             </li>
-            <li class="sub-menu">
-              <a
-                href="#"
-                :class="[
-                  'nav-item',
-                  'nav-link',
-                  { active: activeTab === 'profile' }
-                ]"
-                @click="setActiveTab('profile')"
-              >
-                <i class="ti-user"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
           </ul>
           <span class="mx-3 text-center">
             <h5 class="text-uppercase" @click="logout">
@@ -85,9 +85,32 @@
           </span>
         </div>
       </div>
-      <div class="col-10 pt-3 mt-3 mx-auto">
-        <div v-if="activeTab === 'profile'" class="profile-details">
+      <div v-if="activeTab === 'profile'" class="col-10 pt-3 mt-3 mx-auto">
+        <div class="profile-header pb-6 d-flex align-items-center">
+          <span class="cover-image"></span>
+          <div class="row">
+            <div class="col-md-6 mx-auto text-white profile-text">
+              <h4>Hello {{ loggedInUser.first_name }}<br /></h4>
+              <p>
+                This is your profile page. You can edit your details as well as
+                view all your activity on craftspace
+              </p>
+              <button
+                class="btn btn-md btn-light"
+                @click="isVisible = !isVisible"
+              >
+                Edit Profile
+              </button>
+            </div>
+          </div>
+          <!-- Mask -->
+        </div>
+        <div
+          v-if="activeTab === 'profile'"
+          class="row profile-details p-md-3 p-lg-3"
+        >
           <ProfileCard />
+          <ProfileForm v-if="isVisible" />
         </div>
 
         <!-- products table -->
@@ -109,15 +132,14 @@ import { mapGetters } from 'vuex'
 import EventTable from '~/components/Profile/EventTable'
 import ProfileCard from '~/components/Profile/ProfileCard'
 import ProductTable from '~/components/Profile/ProductTable'
-import SideNav from '~/components/SideNav'
+import ProfileForm from '~/components/Profile/ProfileForm'
 
 export default {
   components: {
+    EventTable,
     ProductTable,
     ProfileCard,
-    EventTable,
-    // eslint-disable-next-line vue/no-unused-components
-    SideNav
+    ProfileForm
   },
   middleware: 'has-profile',
   data() {
@@ -125,10 +147,8 @@ export default {
       profiles: [],
       products: [],
       events: [],
-      activeTab: 'products',
-      profileIsVisible: true,
-      productsIsVisible: false,
-      eventsIsVisible: false
+      activeTab: 'profile',
+      isVisible: false
     }
   },
   computed: {

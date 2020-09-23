@@ -12,6 +12,7 @@
   --light-purple: #302b63;
 
   --grey-grad: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+  --purple-grad: linear-gradient(87deg,#172b4d 0,#1a174d 100%);
 }
 
 html, body {
@@ -370,6 +371,59 @@ hr.light {
 .no-content img {
   height: 10rem;
   width: 10rem;
+}
+.profile-card img {
+  z-index: 1;
+}
+.profile-card .profile-photo {
+  z-index: 2;
+  transform: translateY(-4rem);
+}
+.profile-header {
+  position: relative;
+  min-height: 500px;
+  background-image: url(https://i.imgur.com/YBdCYIM.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
+  opacity: .9!important;
+}
+.cover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--purple-grad) !important;
+  opacity: .9!important;
+}
+.profile-details {
+  position: relative;
+  z-index: 2;
+  transform: translateY(-8rem);
+}
+.profile-text h4 {
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.profile-text p {
+font-size: 1rem;
+font-weight: 300;
+line-height: 1.7;
+font-family: 'Crimson Text', serif !important;
+}
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all .15s ease;
+}
+.btn-neutral {
+  color: var(--light-purple);
 }
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
