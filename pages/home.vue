@@ -95,12 +95,12 @@
           </div>
         </div>
         <!-- start events -->
-        <div class="row mx-auto">
+        <div class="row mx-auto container-fluid">
           <EventCard
             v-for="event in events.slice(0, 4)"
             :key="event.id"
             :event="event"
-            class="col-md-3"
+            class="card-deck"
           />
         </div>
       </div>

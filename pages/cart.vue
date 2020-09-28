@@ -30,7 +30,7 @@
                   <h4>{{ product.name }}</h4>
                   <small>{{ product.price }} x {{ product.quantities }}</small>
                   <p>{{ product.category }}</p>
-                  <p>{{ product.uploaded_by }}</p>
+                  <p>By {{ product.uploaded_by }}</p>
                 </div>
                 <div class="col-2">
                   <h6 class="text-weight-bold">
