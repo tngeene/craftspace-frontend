@@ -1,5 +1,4 @@
-//   auth module stores user authentication status as well
-//   as user details inside Vuex state
+// handles cart operations
 import Vue from 'vue'
 
 export const state = () => ({
@@ -21,8 +20,12 @@ export const mutations = {
     state.cartTotal = 0
   },
   removeItem(state, item) {
-    state.cartTotal -= item.quantities
-    Vue.delete(state.cart, item.id)
+    if (state.cart[item.id].quantities > 1) {
+      state.cartTotal-- && state.cart[item.id].quantities--
+    } else {
+      state.cartTotal -= item.quantities
+      Vue.delete(state.cart, item.id)
+    }
   },
   addToCart(state, item) {
     state.cartTotal++

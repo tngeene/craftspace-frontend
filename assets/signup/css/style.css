@@ -171,6 +171,9 @@ img {
 figure {
   margin: 0; }
 
+.checkout-img img {
+  margin-top: 2.9rem;
+}
 p {
   margin-bottom: 0px;
   font-size: 15px;

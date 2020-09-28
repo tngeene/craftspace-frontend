@@ -15,12 +15,13 @@
               An online space everyone can enjoy, learn and discover the
               richness of African Contemporary Art.
             </h3>
-            <button type="button" class="btn btn-outline-light btn-lg">
-              View Demo
-            </button>
-            <button type="button" class="btn btn-primary btn-lg">
+            <a
+              href="#aboutSection"
+              type="button"
+              class="btn btn-primary btn-lg"
+            >
               Get Started
-            </button>
+            </a>
           </div>
         </div>
         <div class="carousel-item">
@@ -45,7 +46,7 @@
     </div>
 
     <!-- about section -->
-    <div class="container-fluid padding mt-2">
+    <div id="aboutSection" class="container-fluid padding mt-2">
       <div class="row padding align-items-lg-center">
         <div class="col-md-12 col-lg-6">
           <h2 class="title text-center">About</h2>
@@ -93,14 +94,15 @@
             >
           </div>
         </div>
-        <template v-for="event in events.slice(0, 3)">
-          <div
+        <!-- start events -->
+        <div class="row mx-auto">
+          <EventCard
+            v-for="event in events.slice(0, 4)"
             :key="event.id"
-            class="fadeInUp animated col-lg-8 col-md-4 col-sm-6 mb-4"
-          >
-            <event-card-home :event="event"></event-card-home>
-          </div>
-        </template>
+            :event="event"
+            class="col-md-3"
+          />
+        </div>
       </div>
     </div>
     <div class="container-fluid-padding">
@@ -128,12 +130,12 @@
 </template>
 
 <script>
-import EventCardHome from '~/components/EventCardHome'
-import ProductCard from '~/components/ProductCard'
+import EventCard from '~/components/Events/EventCard'
+import ProductCard from '~/components/Products/ProductCard'
 export default {
   components: {
     // eslint-disable-next-line vue/no-unused-components
-    EventCardHome,
+    EventCard,
     ProductCard
   },
   data() {
@@ -154,42 +156,49 @@ export default {
       this.sliding = true
     },
     onSlideEnd(slide) {
-      this.sliding = false
+      this.sliding = true
     },
-    async getEvents() {
+    getEvents() {
       const config = {
         headers: {
           Accept: 'application/json'
         }
       }
       try {
-        const events = await this.$axios.get(`events/`, config)
-        this.events = events.data
-        // eslint-disable-next-line no-console
-        console.log(`resp is ${events.data}`)
+        this.$axios.get(`events/`, config).then((response) => {
+          if (response.status === 200) {
+            this.events = response.data
+          }
+        })
       } catch (e) {
         return { events: [] }
       }
     },
     latestEvents() {
-      return this.events.splice(1, 3)
+      return this.events.splice(1, 4)
     },
-    async getProducts() {
+    getProducts() {
       // method for fetching art pieces in storage
       const config = {
         headers: {
           Accept: 'application/json'
         }
       }
-      try {
-        const products = await this.$axios.get(
-          `art-pieces/all-art-pieces/`,
-          config
-        )
-        this.products = products.data
-      } catch (e) {
-        return { products: [] }
-      }
+      this.$axios
+        .get(`art-pieces/all-art-pieces/`, config)
+        .then((response) => {
+          if (response.status === 200) {
+            this.products = response.data
+          }
+        })
+        .catch((error) => {
+          if (error.response) this.$toast.show(`${error.response.data.detail}`)
+          else if (error.request) {
+            this.$toast.error(
+              'We are experiencing technical difficulties atm 😬'
+            )
+          }
+        })
     }
   },
   head() {

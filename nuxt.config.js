@@ -1,5 +1,8 @@
+const env = require('dotenv').config()
 export default {
   mode: 'universal',
+  target: 'server',
+  env: env.parsed,
   /*
    ** Headers of the page
    */
@@ -19,6 +22,10 @@ export default {
       {
         rel: 'stylesheet',
         href: 'css/font-awesome.min.css'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'css/themify-icons/css/themify-icons.css'
       },
       {
         rel: 'stylesheet',
@@ -84,7 +91,8 @@ export default {
     '@nuxtjs/auth',
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
-    '@neneos/nuxt-animate.css'
+    '@neneos/nuxt-animate.css',
+    '@nuxtjs/dotenv'
   ],
   // toast settings
   toast: {
@@ -114,32 +122,32 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api/v1/'
+    baseURL: process.env.baseAPIUrl
   },
   auth: {
-    localStorage: false,
-    cookie: {
-      options: {
-        expires: 7 // sets the user to be locked out after 7 days of inactivity
-      }
-    },
     strategies: {
       local: {
         endpoints: {
           login: {
-            url: 'auth/token/login',
+            url: 'auth/token/login/',
             method: 'post',
             propertyName: 'auth_token'
           },
-          user: { url: 'auth/users/me', method: 'get', propertyName: false },
-          logout: false
+          user: {
+            url: 'auth/users/me/',
+            method: 'get',
+            propertyName: false
+          },
+          logout: {
+            url: 'auth/token/logout/',
+            method: 'post'
+          }
         },
         tokenType: 'Token',
         tokenRequired: true
       }
     }
   },
-
   /*
    ** Build configuration
    */

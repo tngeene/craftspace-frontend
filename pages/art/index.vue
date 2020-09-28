@@ -42,8 +42,8 @@
 </template>
 <script>
 // import axios from 'axios'
-import ProductCard from '~/components/ProductCard.vue'
-import CategoryCard from '~/components/CategoryCard.vue'
+import ProductCard from '~/components/Products/ProductCard'
+import CategoryCard from '~/components/Products/CategoryCard'
 export default {
   components: {
     ProductCard,
