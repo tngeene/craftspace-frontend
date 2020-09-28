@@ -12,6 +12,7 @@
   --light-purple: #302b63;
 
   --grey-grad: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+  --purple-grad: linear-gradient(87deg,#172b4d 0,#1a174d 100%);
 }
 
 html, body {
@@ -311,9 +312,117 @@ hr.light {
   line-height: 1.5rem !important;
   margin-top: 3.5rem;
 }
-.b-sidebar {
-  top: 4.0625rem !important;
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: var(--grade-grey);
+  position: relative;
+  height: 100%;
+  overflow: none;
 }
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar ul li {
+  list-style: none;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+.no-content img {
+  height: 10rem;
+  width: 10rem;
+}
+.profile-card img {
+  z-index: 1;
+}
+.profile-card .profile-photo {
+  z-index: 2;
+  transform: translateY(-4rem);
+}
+.profile-header {
+  position: relative;
+  min-height: 500px;
+  background-image: url(https://i.imgur.com/YBdCYIM.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
+  opacity: .9!important;
+}
+.cover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--purple-grad) !important;
+  opacity: .9!important;
+}
+.profile-details {
+  position: relative;
+  z-index: 2;
+  transform: translateY(-8rem);
+}
+.profile-text h4 {
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.profile-text p {
+font-size: 1rem;
+font-weight: 300;
+line-height: 1.7;
+font-family: 'Crimson Text', serif !important;
+}
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all .15s ease;
+}
+.btn-neutral {
+  color: var(--light-purple);
+}
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
 
 /*---Media Queries --*/
 @media (max-width: 992px) {

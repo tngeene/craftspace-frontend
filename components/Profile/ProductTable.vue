@@ -15,7 +15,7 @@
         </tr>
       </thead>
 
-      <tbody>
+      <tbody v-if="products.length > 0">
         <tr v-for="product in products" :key="product.id">
           <td>{{ product.name }}</td>
           <td>{{ product.category }}</td>
@@ -54,7 +54,13 @@
         </tr>
       </tbody>
     </table>
-    <div class=" text-center">
+    <div v-if="products.length < 1" class="text-center no-content">
+      <img class="img-fluid mb-2" src="/img/painter.png" alt="craftspace" />
+      <h3>
+        Oops! No pieces uploaded yet, click the button below to add a new piece.
+      </h3>
+    </div>
+    <div class="text-center mb-2">
       <nuxt-link :to="`/art/add`" class="btn btn-sm btn-primary">
         Add New
       </nuxt-link>

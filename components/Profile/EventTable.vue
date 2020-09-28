@@ -15,7 +15,7 @@
         </tr>
       </thead>
 
-      <tbody>
+      <tbody v-if="events.length > 0">
         <tr v-for="event in events" :key="event.id">
           <td>{{ event.name }}</td>
           <td>{{ event.date }}</td>
@@ -54,7 +54,13 @@
         </tr>
       </tbody>
     </table>
-    <div class=" text-center">
+    <div v-if="events.length < 1" class="text-center no-content">
+      <img class="img-fluid mb-2" src="/img/painter.png" alt="craftspace" />
+      <h3>
+        Oops! No events uploaded yet, click the button below to add a new event.
+      </h3>
+    </div>
+    <div class="text-center">
       <nuxt-link :to="`/events/add`" class="btn btn-sm btn-primary">
         Add New
       </nuxt-link>
