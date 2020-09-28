@@ -1,6 +1,9 @@
 <template>
   <div class="col-md-4 mb-3">
-    <div v-if="profile" class="card profile-card shadow-sm mb-3">
+    <div
+      v-if="profile && loggedInUser.membership_type === 'Artist'"
+      class="card profile-card shadow-sm mb-3"
+    >
       <img
         class="card-img-top"
         src="/img/art-background.jpg"
@@ -52,7 +55,10 @@
         <b-skeleton animation="fade" width="70%"></b-skeleton>
       </b-card>
     </div>
-    <div class="card shadow-sm mb-3">
+    <div
+      v-if="loggedInUser.membership_type === 'Artist'"
+      class="card shadow-sm mb-3"
+    >
       <RatingCard :artist-profile="profile" />
     </div>
   </div>
@@ -67,7 +73,8 @@ export default {
   components: { RatingCard },
   data() {
     return {
-      profile: ''
+      profile: '',
+      collector_profile: ''
     }
   },
   computed: {
@@ -75,11 +82,11 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.getProfile(this.loggedInUser.id)
+      this.getArtistProfile(this.loggedInUser.id)
     }, 1000)
   },
   methods: {
-    async getProfile(id) {
+    async getArtistProfile(id) {
       await this.$axios
         .get(`artists/profiles/?user=${id}`)
         .then((response) => {

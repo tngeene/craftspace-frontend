@@ -15,7 +15,7 @@
           v-for="event in events"
           :key="event.id"
           :event="event"
-          class="bounceIn animated col-md-3"
+          class="bounceIn animated card-deck"
         />
       </div>
     </div>

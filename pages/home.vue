@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="/img/village.jpg" />
+          <img class="d-block w-100" src="/img/trumpet.jpg" />
           <div class="carousel-caption">
             <h3>
               Craftspace showcases the dynamic African art scene and connects a
@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="/img/gamepark.jpg" />
+          <img class="d-block w-100" src="/img/artist.jpeg" />
           <div class="carousel-caption">
             <h3>
               Enhancing creatives and aiming to improve their portfolio.
@@ -95,12 +95,12 @@
           </div>
         </div>
         <!-- start events -->
-        <div class="row mx-auto">
+        <div class="row mx-auto container-fluid">
           <EventCard
             v-for="event in events.slice(0, 4)"
             :key="event.id"
             :event="event"
-            class="col-md-3"
+            class="card-deck"
           />
         </div>
       </div>

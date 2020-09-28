@@ -104,7 +104,7 @@
               v-for="event in events"
               :key="event.id"
               :event="event"
-              class="col-md-4"
+              class="card-deck"
             />
           </div>
           <div v-if="activeTab === 'profile'" class="text-center">

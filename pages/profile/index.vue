@@ -85,8 +85,11 @@
           </span>
         </div>
       </div>
-      <div v-if="activeTab === 'profile'" class="col-10 pt-3 mt-3 mx-auto">
-        <div class="profile-header pb-6 d-flex align-items-center">
+      <div class="col-10">
+        <div
+          v-if="activeTab === 'profile'"
+          class="profile-header pb-6 d-flex align-items-center"
+        >
           <span class="cover-image"></span>
           <div class="row">
             <div class="col-md-6 mx-auto text-white profile-text">
@@ -107,14 +110,22 @@
         </div>
         <div
           v-if="activeTab === 'profile'"
-          class="row profile-details p-md-3 p-lg-3"
+          class="row profile-details p-md-3 mt-2 p-lg-3"
         >
-          <ProfileCard />
-          <ProfileForm v-if="isVisible" />
+          <ArtistProfileCard v-if="loggedInUser.membership_type === 'Artist'" />
+          <CollectorProfileCard
+            v-if="loggedInUser.membership_type === 'Collector'"
+          />
+          <ArtistProfileForm
+            v-if="isVisible && loggedInUser.membership_type === 'Artist'"
+          />
+          <CollectorProfileForm
+            v-if="isVisible && loggedInUser.membership_type === 'Collector'"
+          />
         </div>
 
         <!-- products table -->
-        <div v-if="activeTab === 'products'" class="products-table">
+        <div v-if="activeTab === 'products'" class="products-table mt-2">
           <ProductTable />
         </div>
         <!-- end of products table -->
@@ -130,16 +141,22 @@
 <script>
 import { mapGetters } from 'vuex'
 import EventTable from '~/components/Profile/EventTable'
-import ProfileCard from '~/components/Profile/ProfileCard'
+import ArtistProfileCard from '~/components/Profile/ArtistProfileCard'
 import ProductTable from '~/components/Profile/ProductTable'
-import ProfileForm from '~/components/Profile/ProfileForm'
+import ArtistProfileForm from '~/components/Profile/ArtistProfileForm'
+import CollectorProfileCard from '~/components/Profile/CollectorProfileCard'
+import CollectorProfileForm from '~/components/Profile/CollectorProfileForm'
 
 export default {
   components: {
+    // eslint-disable-next-line vue/no-unused-components
+    CollectorProfileCard,
+    // eslint-disable-next-line vue/no-unused-components
+    CollectorProfileForm,
     EventTable,
     ProductTable,
-    ProfileCard,
-    ProfileForm
+    ArtistProfileCard,
+    ArtistProfileForm
   },
   middleware: 'has-profile',
   data() {

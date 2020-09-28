@@ -84,7 +84,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  name: 'ProfileForm',
+  name: 'CollectorProfileForm',
   middleware: 'auth',
   data() {
     return {
@@ -104,7 +104,7 @@ export default {
   methods: {
     async getProfile(id) {
       await this.$axios
-        .get(`artists/profiles/${id}`)
+        .get(`collectors/profiles/${id}`)
         .then((response) => {
           if (response.status === 200) {
             this.profile = response.data
@@ -116,7 +116,7 @@ export default {
     },
     async getUserProfile(id) {
       await this.$axios
-        .get(`artists/profiles/?user=${id}`)
+        .get(`collectors/profiles/?user=${id}`)
         .then((response) => {
           if (response.status === 200) {
             this.profile_id = response.data[0].id
