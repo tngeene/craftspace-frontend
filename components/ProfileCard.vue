@@ -1,31 +1,36 @@
 <template>
-  <div class="card mb-3" style="max-width: 1000px;">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img :src="profile.photo" class="card-img" alt="" />
+  <b-card
+    :profile="profile"
+    :img-src="profile.photo"
+    img-alt="profile photo"
+    img-left
+    class="mb-3 artist-card"
+  >
+    <b-card-text class="artist-profile">
+      <p>
+        <i class="fa fa-info"></i>
+        {{ profile.bio }}
+      </p>
+      <p>
+        <i class="fa fa-map"></i>
+        {{ profile.county }}
+      </p>
+      <p>
+        <i class="fa fa-calendar"></i>
+        {{ profile.created_on }}
+      </p>
+      <div class="d-flex justify-content-between">
+        <star-rating
+          v-model="rating"
+          :show-rating="true"
+          :max-rating="5"
+          :star-size="20"
+          :increment="0.5"
+          @rating-selected="setRating"
+        ></star-rating>
       </div>
-      <div class="col-md-8 text-center my-auto">
-        <div class="card-body">
-          <h5 class="card-title"></h5>
-          <p class="card-text">
-            <i class="fa fa-info"></i>
-            {{ profile.bio }}
-          </p>
-          <p>
-            <i class="fa fa-map"></i>
-            {{ profile.county }}
-          </p>
-          <p>
-            <i class="fa fa-calendar"></i>
-            {{ profile.created_on }}
-          </p>
-          <p class="card-text">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+    </b-card-text>
+  </b-card>
 </template>
 
 <script>

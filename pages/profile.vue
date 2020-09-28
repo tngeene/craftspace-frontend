@@ -11,16 +11,14 @@
           <div class="list-group list-group-flush">
             <p
               class="list-group-item list-group-item-action bg-light"
-              @click="profileIsVisible = !profileIsVisible"
+              @click="isVisible = !isVisible"
             >
               Profile
             </p>
             <p
               v-if="loggedInUser.membership_type === 'Artist'"
               class="list-group-item list-group-item-action bg-light"
-              @click="
-                profileIsVisible = !profileIsVisible && !productsIsVisible
-              "
+              @click="isVisible = !isVisible"
             >
               Pieces
             </p>
@@ -33,7 +31,7 @@
             <p
               v-if="loggedInUser.membership_type === 'Artist'"
               class="list-group-item list-group-item-action bg-light"
-              @click="profileIsVisible = !profileIsVisible && eventsIsVisible"
+              @click="isVisible = !isVisible"
             >
               Exhibitions
             </p>
@@ -43,20 +41,14 @@
           </div>
         </div>
       </div>
-      <div class="col-9 mx-auto">
+      <div class="col-10">
         <template v-for="profile in profiles">
           <div :key="profile.id" class="mt-3">
-            <profile-card
-              v-if="profileIsVisible && !productsIsVisible && !eventsIsVisible"
-              :profile="profile"
-            ></profile-card>
+            <profile-card v-if="!isVisible" :profile="profile"></profile-card>
           </div>
         </template>
         <!-- products table -->
-        <div
-          v-if="!profileIsVisible && !productsIsVisible && !eventsIsVisible"
-          class="products-table"
-        >
+        <div v-if="isVisible" class="products-table">
           <table class="table">
             <thead class="thead-dark">
               <tr>
@@ -106,9 +98,7 @@
                 <td>
                   <button
                     class="btn btn-sm btn-danger"
-                    data-toggle="modal"
-                    data-target="#exampleModal"
-                    @click="modalInfo(product)"
+                    @click="deleteProduct(product.id)"
                   >
                     Delete
                   </button>
@@ -124,10 +114,7 @@
         </div>
         <!-- end of products table -->
         <!-- events table -->
-        <div
-          v-if="!profileIsVisible && !productsIsVisible && !eventsIsVisible"
-          class="events-table mt-3 mb-2"
-        >
+        <div v-if="isVisible" class="events-table mt-3 mb-2">
           <table class="table">
             <thead class="thead-dark">
               <tr>
@@ -192,55 +179,6 @@
           </div>
         </div>
         <!-- end of events table -->
-        <!-- Modal -->
-        <div
-          id="exampleModal"
-          class="modal fade"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 id="exampleModalLabel" class="modal-title">
-                  Delete Product
-                </h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>
-                  Are you sure you want to delete {{ selectedProduct.name }}?
-                </p>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Dismiss
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  data-dismiss="modal"
-                  @click="deleteProduct(selectedProduct.id)"
-                >
-                  Confirm
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -253,7 +191,6 @@ import ProfileCard from '~/components/ProfileCard'
 
 export default {
   components: {
-    // eslint-disable-next-line vue/no-unused-components
     ProfileCard
     // ProductsTable
   },
@@ -272,10 +209,7 @@ export default {
       profiles: [],
       products: [],
       events: [],
-      selectedProduct: '',
-      profileIsVisible: true,
-      productsIsVisible: false,
-      eventsIsVisible: false
+      isVisible: false
     }
   },
   computed: {
@@ -315,7 +249,7 @@ export default {
       try {
         await this.$axios.delete(`art-pieces/${id}/delete`)
         this.$toast.success('Piece Successfully Deleted')
-        this.$router.redirect('/profile')
+        this.$router.push('/profile')
       } catch (e) {
         this.$toast.error('Could Not delete')
         return e.data
@@ -337,22 +271,6 @@ export default {
       } catch (e) {
         this.$toast.danger('Could Not delete')
         return e
-      }
-    },
-    modalInfo(product) {
-      this.selectedProduct = product
-      // eslint-disable-next-line no-console
-      console.log(`selected product is ${this.selectedProduct.id}`)
-    },
-    toggleSideNav() {
-      // eslint-disable-next-line prefer-const
-      let sideNavPos = document.querySelector('#sideNav')
-      // eslint-disable-next-line no-unused-expressions
-      sideNavPos.style.left === '-250px'
-      if (sideNavPos.style.left === '-250px') {
-        sideNavPos.style.left = '0'
-      } else {
-        sideNavPos.style.left = '-250px'
       }
     }
   },
