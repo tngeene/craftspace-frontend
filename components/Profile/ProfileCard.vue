@@ -1,46 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <b-card
-    :profile="profile"
-    :img-src="profile.photo"
-    img-alt="profile photo"
-    img-left
-    class="mb-3 artist-card"
-  >
-    <b-card-text class="artist-profile">
-      <p>
-        <i class="fa fa-info"></i>
-        {{ profile.bio }}
-      </p>
-      <p>
-        <i class="fa fa-map"></i>
-        {{ profile.county }}
-      </p>
-      <p>
-        <i class="fa fa-calendar"></i>
-        {{ profile.created_on }}
-      </p>
-      <div class="d-flex justify-content-between">
-        <star-rating
-          v-model="rating"
-          :show-rating="true"
-          :max-rating="5"
-          :star-size="20"
-          :increment="0.5"
-          @rating-selected="setRating"
-        ></star-rating>
-      </div>
-<<<<<<< HEAD:components/ProfileCard.vue
-    </b-card-text>
-  </b-card>
-=======
-      <div class="col-md-8 text-center my-auto">
-        <div class="card-body">
-          <h5 class="card-title"></h5>
-          <p class="card-text p-2">
-            <i class="fa fa-info"></i>
-            {{ profile.bio }}
-=======
   <div class="col-md-4 mb-3">
     <div v-if="profile" class="card profile-card shadow-sm mb-3">
       <img
@@ -70,7 +28,6 @@
           <p>
             <strong><i class="fa fa-envelope" aria-hidden="true"></i></strong>
             {{ profile.user.email }}
->>>>>>> 8cc37f07e9e77b14358fcec00b198d399c364cd6
           </p>
           <p>
             <strong
@@ -99,7 +56,6 @@
       <RatingCard :artist-profile="profile" />
     </div>
   </div>
->>>>>>> ecf256028d7e685df834e066ab91bd546ef82c31:components/Profile/ProfileCard.vue
 </template>
 
 <script>

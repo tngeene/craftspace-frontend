@@ -186,7 +186,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ProfileCard from '~/components/ProfileCard'
+import ProfileCard from '~/components/Profile/ProfileCard'
 // import ProductsTable from '~/components/ProductsTable'
 
 export default {
