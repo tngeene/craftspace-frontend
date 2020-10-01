@@ -66,7 +66,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import RatingCard from '~/components/Profile/RatingCard'
+import RatingCard from '~/components/Profile/Artists/RatingCard'
 export default {
   name: 'ProfileCard',
   middleware: 'auth',

@@ -18,7 +18,9 @@
           <b-nav-item><nuxt-link to="/artists">Artists</nuxt-link></b-nav-item>
           <b-nav-item><nuxt-link to="/art">Collection</nuxt-link></b-nav-item>
           <b-nav-item
-            ><nuxt-link to="/custom-order">Custom Orders</nuxt-link></b-nav-item
+            ><nuxt-link to="/custom-orders"
+              >Custom Orders</nuxt-link
+            ></b-nav-item
           >
           <b-nav-item
             ><nuxt-link to="/cart">

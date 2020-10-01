@@ -129,6 +129,16 @@
           <ProductTable />
         </div>
         <!-- end of products table -->
+        <!-- custom  orders table -->
+        <div v-if="activeTab === 'custom-orders'" class="products-table mt-2">
+          <ArtistCustomOrdersTable
+            v-if="loggedInUser.membership_type === 'Artist'"
+          />
+          <CollectorCustomOrdersTable
+            v-if="loggedInUser.membership_type === 'Collector'"
+          />
+        </div>
+        <!-- end of custom orders table -->
         <!-- events table -->
         <div v-if="activeTab === 'events'" class="events-table mt-3 mb-2">
           <EventTable />
@@ -141,22 +151,24 @@
 <script>
 import { mapGetters } from 'vuex'
 import EventTable from '~/components/Profile/EventTable'
-import ArtistProfileCard from '~/components/Profile/ArtistProfileCard'
-import ProductTable from '~/components/Profile/ProductTable'
-import ArtistProfileForm from '~/components/Profile/ArtistProfileForm'
-import CollectorProfileCard from '~/components/Profile/CollectorProfileCard'
-import CollectorProfileForm from '~/components/Profile/CollectorProfileForm'
+import ProductTable from '~/components/Profile/Artists/ProductTable'
+import ArtistProfileCard from '~/components/Profile/Artists/ArtistProfileCard'
+import ArtistProfileForm from '~/components/Profile/Artists/ArtistProfileForm'
+import ArtistCustomOrdersTable from '~/components/Profile/Artists/CustomOrdersTable'
+import CollectorProfileCard from '~/components/Profile/Collectors/CollectorProfileCard'
+import CollectorProfileForm from '~/components/Profile/Collectors/CollectorProfileForm'
+import CollectorCustomOrdersTable from '~/components/Profile/Collectors/CustomOrdersTable'
 
 export default {
   components: {
-    // eslint-disable-next-line vue/no-unused-components
-    CollectorProfileCard,
-    // eslint-disable-next-line vue/no-unused-components
-    CollectorProfileForm,
-    EventTable,
-    ProductTable,
     ArtistProfileCard,
-    ArtistProfileForm
+    ArtistProfileForm,
+    ArtistCustomOrdersTable,
+    CollectorProfileCard,
+    CollectorProfileForm,
+    CollectorCustomOrdersTable,
+    EventTable,
+    ProductTable
   },
   middleware: 'has-profile',
   data() {
