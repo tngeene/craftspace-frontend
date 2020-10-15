@@ -25,53 +25,8 @@ export default {
     ArtistProfileForm,
     CollectorProfileForm
   },
-  data() {
-    return {
-      bio: '',
-      county: '',
-      birth_place: '',
-      photo: '',
-      billing_address: ''
-    }
-  },
   computed: {
     ...mapGetters(['loggedInUser'])
-  },
-  // methods for posting checkout info to db
-  methods: {
-    async postArtistProfile() {
-      try {
-        await this.$axios.post('artists/profiles/', {
-          bio: this.bio,
-          county: this.county,
-          birth_place: this.birth_place,
-          photo: this.photo
-        })
-        this.$toast.success('Profile Succesfully Updated')
-        this.$router.push('/home')
-      } catch (e) {
-        // this.error = e.response.data.detail
-        this.$toast.global.my_error() // Using custom toast
-        this.$toast.error('Could not  Update Profile :(')
-      }
-    },
-    async postCollectoProfile() {
-      try {
-        await this.$axios.post('collectors/profiles/', {
-          bio: this.bio,
-          county: this.county,
-          birth_place: this.birth_place,
-          billing_address: this.billing_address,
-          photo: this.photo
-        })
-        this.$toast.success('Profile Succesfully Updated')
-        this.$router.push('/home')
-      } catch (e) {
-        // this.error = e.response.data.detail
-        this.$toast.global.my_error() // Using custom toast
-        this.$toast.error('Could not  Update Profile :(')
-      }
-    }
   },
   head() {
     return {

@@ -90,22 +90,51 @@
             </a>
           </nav>
           <div v-if="activeTab === 'pieces'" class="row">
-            <template v-for="product in products">
-              <div
-                :key="product.id"
-                class="bounceIn animated col-lg-4 col-md-3 col-sm-6 mb-4"
-              >
-                <product-card :product="product"></product-card>
-              </div>
-            </template>
+            <div v-if="products.length > 0" class="row">
+              <template v-for="product in products">
+                <div
+                  :key="product.id"
+                  class="bounceIn animated col-lg-4 col-md-3 col-sm-6 mb-4"
+                >
+                  <product-card :product="product"></product-card>
+                </div>
+              </template>
+            </div>
+            <div
+              v-if="products.length < 1"
+              class="col-12 text-center no-content"
+            >
+              <img
+                class="img-fluid mb-2 text-center"
+                src="/img/painter.png"
+                alt="craftspace"
+              />
+              <h3>
+                Oops! Artist has not uploaded any art work yet 😕
+              </h3>
+            </div>
           </div>
           <div v-if="activeTab === 'events'" class="row">
-            <EventCard
-              v-for="event in events"
-              :key="event.id"
-              :event="event"
-              class="card-deck"
-            />
+            <div v-if="events.length > 0" class="row">
+              <EventCard
+                v-for="event in events"
+                :key="event.id"
+                :event="event"
+                class="card-deck"
+              />
+            </div>
+            <div v-if="events.length < 1" class="container row">
+              <div class="col-10 mx-auto text-center h-25">
+                <img
+                  class="img-fluid mb-2 h-50"
+                  src="/img/painter.png"
+                  alt="craftspace"
+                />
+                <h3>
+                  Oops! Artist hasn't uploaded any exhibitions yet 🙁
+                </h3>
+              </div>
+            </div>
           </div>
           <div v-if="activeTab === 'profile'" class="text-center">
             <h4 class="text-capitalize mb-3">

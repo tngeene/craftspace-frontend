@@ -71,6 +71,7 @@ export default {
     `~/plugins/vue-typed`,
     `~/plugins/vue-star-ratings`,
     `~/plugins/vue-moment`,
+    { src: '~/plugins/vue-3d', ssr: false },
     { src: '~/plugins/vuex-persistedstate', ssr: false }
   ],
   /*
