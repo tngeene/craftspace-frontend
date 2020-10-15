@@ -32,8 +32,8 @@
               :alt="product.name"
             />
             <img
-              v-if="product.image"
-              :src="product.image"
+              v-if="product.spin_image"
+              :src="product.spin_image"
               height="60px"
               width="60px"
               :alt="product.name"
@@ -41,6 +41,7 @@
           </div>
         </div>
         <div class="col-md-7">
+          <!-- <model-fbx src="/img/modern-chair.FBX"></model-fbx> -->
           <img
             :src="product.picture"
             height="400rem"
@@ -114,6 +115,7 @@
 <script>
 import ProductDescriptionCard from '~/components/Products/ProductDescriptionCard'
 import ProductCard from '~/components/Products/ProductCard'
+
 export default {
   // eslint-disable-next-line vue/no-unused-components
   components: { ProductDescriptionCard, ProductCard },

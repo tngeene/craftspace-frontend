@@ -46,14 +46,15 @@
                 </p>
               </div>
               <div class="card-text venue">
-                <i class="fa fa-bookmark text-white"></i>
+                <i class="fa fa-map-pin text-white"></i>
                 <p class="text-white">
                   {{ event.venue }}
                 </p>
               </div>
               <div class="card-text text-white ticket-price">
                 &#36;
-                <p>ksh {{ event.ticket_price }}</p>
+                <p v-if="event.ticket_price">ksh {{ event.ticket_price }}</p>
+                <p v-else><span class="badge badge-light">Free</span></p>
               </div>
               <!-- <div class="event-actions text-center">
                 <button class="btn-md btn-primary">Add to calendar</button>

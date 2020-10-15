@@ -49,6 +49,7 @@
               />
             </div>
             <div class="form-group">
+              <label for>Profile Picture</label>
               <input
                 type="file"
                 name="file"
