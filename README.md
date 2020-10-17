@@ -1,23 +1,29 @@
 # craftspace-frontend
 
-> an online art ordering system
+> Frontend code for art ordering system made with vue.js and django.
+
+## Requirements
+
+What you need to run the app.
+
+1. Node.js installed, you can check for more info [here](https://phoenixnap.com/kb/install-node-js-npm-on-windows)
+2. Yarn, a node dependency manager. To install, follow [this link](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
+
+## Setup
+
+1. Clone the repository.
+2. Make a `.env` file from the provided `.env.example` file
+and paste the following values
+
+        baseURL=http://127.0.0.1:3000
+        baseAPIUrl=http://127.0.0.1:8000/api/v1/
 
 ## Build Setup
 
-``` bash
-# install dependencies
-$ yarn install
+1. While at the root of the project directory, run `yarn install` to install dependencies.
+2. After installation of the dependencies, run `yarn serve` to spin up the local development server.
+3. Visit your browser at `127.0.0.1:300` to view the app.
 
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
+  DISCLAIMER: make sure that the django backend app is running as well, instructions on setup have been included at the [backend README file](https://github.com/tngeene/craftspace-backend).
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-frontend code for art ordering system made with vue.js and djang
