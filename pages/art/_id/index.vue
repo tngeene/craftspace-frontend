@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="col-md-7">
-          <!-- <model-fbx src="/img/modern-chair.FBX"></model-fbx> -->
+          <!-- <model-fbx src="/img/dancing.fbx"></model-fbx> -->
           <img
             :src="product.picture"
             height="400rem"
