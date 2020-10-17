@@ -21,7 +21,7 @@ and paste the following values
 ## Build Setup
 
 1. While at the root of the project directory, run `yarn install` to install dependencies.
-2. After installation of the dependencies, run `yarn serve` to spin up the local development server.
+2. After installation of the dependencies, run `yarn dev` to spin up the local development server.
 3. Visit your browser at `127.0.0.1:300` to view the app.
 
   DISCLAIMER: make sure that the django backend app is running as well, instructions on setup have been included at the [backend README file](https://github.com/tngeene/craftspace-backend).
