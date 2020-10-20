@@ -47,7 +47,7 @@
           <div class="checkoout-image py-3">
             <figure class="checkout-img">
               <img
-                src="~/assets/img/online_payment.png"
+                src="/img/password.png"
                 width="380px"
                 height="380px"
                 alt="checkout image"
@@ -112,4 +112,9 @@ body {
 .product-card {
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
 }
+</style>
+
+<style scoped>
+@import '@/assets/signup/css/style.css';
+@import '~/assets/signup/fonts/material-icon/css/material-design-iconic-font.min.css';
 </style>
