@@ -4,7 +4,6 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Requested By</th>
-          <th scope="col">phone Number</th>
           <th scope="col">Description</th>
           <th scope="col">Due Date</th>
           <th scope="col">Medium</th>
@@ -22,7 +21,6 @@
               order.requested_by.first_name + ' ' + order.requested_by.last_name
             }}
           </td>
-          <td>{{ order.phone_number }}</td>
           <td>{{ order.description | truncate(15, '...') }}</td>
           <td>{{ order.due_date | moment('MMMM Do YYYY') }}</td>
           <td>{{ order.medium }}</td>

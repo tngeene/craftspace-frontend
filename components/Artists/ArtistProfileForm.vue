@@ -108,6 +108,10 @@ export default {
       }
       reader.readAsDataURL(file)
     },
+    routeToProfile() {
+      this.$store.commit('setProfile')
+      this.$router.push('/profile')
+    },
     async postArtistProfile() {
       const config = {
         headers: { 'content-type': 'multipart/form-data' }
@@ -120,8 +124,8 @@ export default {
         .post('artists/profiles/', formData, config)
         .then((response) => {
           if (response.status === 201) {
+            this.routeToProfile()
             this.$toast.success('Profile Succesfully Updated')
-            this.$router.push('/profile')
           }
         })
         .catch((error) => {
