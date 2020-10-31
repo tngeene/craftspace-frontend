@@ -18,7 +18,7 @@
       <tbody v-if="events.length > 0">
         <tr v-for="event in events" :key="event.id">
           <td>{{ event.name }}</td>
-          <td>{{ event.date }}</td>
+          <td>{{ event.date | moment('MMMM Do YYYY') }}</td>
           <td>{{ event.description | truncate(15, '...') }}</td>
           <td>{{ event.venue }}</td>
           <td>{{ event.ticket_price }}</td>

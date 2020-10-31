@@ -30,24 +30,27 @@
               height="60px"
               width="60px"
               :alt="product.name"
+              @click="isVisible = !isVisible"
             />
-            <img
-              v-if="product.spin_image"
-              :src="product.spin_image"
-              height="60px"
-              width="60px"
-              :alt="product.name"
-            />
+            <div @click="isVisible = !isVisible">
+              <model-fbx
+                v-if="product.spin_image"
+                :src="product.spin_image"
+                class="mt-2"
+              ></model-fbx>
+            </div>
           </div>
         </div>
         <div class="col-md-7">
-          <!-- <model-fbx src="/img/dancing.fbx"></model-fbx> -->
           <img
+            v-if="!isVisible"
             :src="product.picture"
             height="400rem"
             width="100%"
             :alt="product.name"
           />
+
+          <model-fbx v-else :src="product.spin_image"></model-fbx>
         </div>
         <div class="col-md-4 bg-light p-4">
           <h5>{{ product.name }}</h5>
@@ -131,7 +134,8 @@ export default {
     return {
       product: Object,
       pieces: [],
-      category_products: []
+      category_products: [],
+      isVisible: false
     }
   },
   created() {

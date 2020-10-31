@@ -21,22 +21,31 @@ export default {
   components: {
     ArtistCard
   },
-  async asyncData({ $axios, params }) {
-    const config = {
-      headers: {
-        Accept: 'application/json'
-      }
-    }
-    try {
-      const artists = await $axios.$get(`artists/`, config)
-      return { artists }
-    } catch (e) {
-      return { artists: [] }
-    }
-  },
   data() {
     return {
       artists: []
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.getArtists()
+    }, 1000)
+  },
+  methods: {
+    async getArtists() {
+      await this.$axios
+        .get(`artists/`)
+        .then((response) => {
+          if (response.status === 200) {
+            this.artists = response.data
+            // eslint-disable-next-line no-console
+            console.log(`artist data ${this.artists}`)
+          }
+        })
+        .catch((error) => {
+          if (error.response)
+            this.$toast.show(`could not fetch artists at this time`)
+        })
     }
   },
   head() {

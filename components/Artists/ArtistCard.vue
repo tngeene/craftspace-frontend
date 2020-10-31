@@ -1,6 +1,6 @@
 <template>
   <div class="artist-card ml-2 mr-4" style="width: 18rem;">
-    <div class="artist-box box-outline box-outline-about">
+    <div v-if="artist" class="artist-box box-outline box-outline-about">
       <div class="artist-image-box">
         <img
           :src="artist.artist_profile.photo"

@@ -7,7 +7,12 @@ export const getters = {
     return state.auth.user // gets details of logged in user, returns null if no user is logged
   }
 }
-
+export const mutations = {
+  setProfile(state) {
+    state.auth.user.has_profile = true
+  }
+}
 export default {
-  getters
+  getters,
+  mutations
 }

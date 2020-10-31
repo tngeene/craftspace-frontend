@@ -18,12 +18,12 @@
                 </h2>
               </div>
               <div class="text-center">
-                <p>
+                <!-- <p>
                   <strong
                     ><i class="fa fa-phone fa-rotate-90" aria-hidden="true"></i
                   ></strong>
                   {{ artist.phone_number }}
-                </p>
+                </p> -->
                 <p>
                   <strong
                     ><i class="fa fa-envelope" aria-hidden="true"></i
@@ -76,7 +76,7 @@
             >
               Events
             </a>
-            <a
+            <!-- <a
               :class="[
                 'nav-item',
                 'nav-link',
@@ -87,7 +87,7 @@
               @click="setActiveTab('profile')"
             >
               Full Profile
-            </a>
+            </a> -->
           </nav>
           <div v-if="activeTab === 'pieces'" class="row">
             <div v-if="products.length > 0" class="row">
@@ -136,7 +136,7 @@
               </div>
             </div>
           </div>
-          <div v-if="activeTab === 'profile'" class="text-center">
+          <!-- <div v-if="activeTab === 'profile'" class="text-center">
             <h4 class="text-capitalize mb-3">
               Artist Details
             </h4>
@@ -163,7 +163,7 @@
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

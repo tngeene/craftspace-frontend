@@ -18,7 +18,10 @@
                 <span>My Profile</span>
               </a>
             </li>
-            <li class="sub-menu">
+            <li
+              v-if="loggedInUser.membership_type == 'Artist'"
+              class="sub-menu"
+            >
               <a
                 href="#"
                 :class="[
