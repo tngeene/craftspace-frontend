@@ -267,6 +267,7 @@ hr.light {
 .mini-images {
   border-right: 1px solid var(--grey);
   margin-bottom: 5px;
+  cursor: pointer;
 }
 .mini-images .images img{
   margin-top: 5px;
