@@ -8,8 +8,8 @@
       <h1>In love with art?</h1>
       <vue-typed-js
         :strings="[
-          'Learn about and collect art from leading and upcoming artists in Kenya',
-          'Sell works from your collection',
+          'Discover art you love.',
+          'Find the perfect African art piece.',
           'Discover what is happening in the art space in and around Nairobi'
         ]"
         :fade-out="true"
@@ -62,6 +62,6 @@ header {
 .text-box p {
   font-size: 2rem;
   font-weight: lighter;
-  font-family: cursive;
+  font-family: 'itim', cursive;
 }
 </style>

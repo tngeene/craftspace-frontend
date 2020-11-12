@@ -10,16 +10,18 @@
           <th scope="col">Date Uploaded</th>
           <th scope="col">Last Update</th>
           <th scope="col"></th>
-          <th scope="col"></th>
         </tr>
       </thead>
 
       <tbody v-if="orders.length > 0">
         <tr v-for="order in orders" :key="order.id">
-          <td>
+          <td v-if="order.requested_by">
             {{
               order.requested_by.first_name + ' ' + order.requested_by.last_name
             }}
+          </td>
+          <td v-else>
+            {{ order.first_name + ' ' + order.last_name }}
           </td>
           <td>{{ order.description | truncate(15, '...') }}</td>
           <td>{{ order.due_date | moment('MMMM Do YYYY') }}</td>
@@ -37,16 +39,6 @@
             >
               View
             </nuxt-link>
-          </td>
-          <td>
-            <button
-              class="btn btn-sm btn-danger"
-              data-toggle="modal"
-              data-target="#orderModal"
-              @click="modalInfo(order)"
-            >
-              Delete
-            </button>
           </td>
         </tr>
       </tbody>

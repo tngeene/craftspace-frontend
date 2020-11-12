@@ -35,10 +35,7 @@
                 <span>Art Work</span>
               </a>
             </li>
-            <li
-              v-if="loggedInUser.membership_type == 'Collector'"
-              class="sub-menu"
-            >
+            <li class="sub-menu">
               <a
                 href="#"
                 :class="[
@@ -141,6 +138,12 @@
             v-if="loggedInUser.membership_type === 'Collector'"
           />
         </div>
+        <div v-if="activeTab === 'orders'" class="products-table mt-2">
+          <ArtistOrdersTable v-if="loggedInUser.membership_type === 'Artist'" />
+          <CollectorOrdersTable
+            v-if="loggedInUser.membership_type === 'Collector'"
+          />
+        </div>
         <!-- end of custom orders table -->
         <!-- events table -->
         <div v-if="activeTab === 'events'" class="events-table mt-3 mb-2">
@@ -158,18 +161,22 @@ import ProductTable from '~/components/Profile/Artists/ProductTable'
 import ArtistProfileCard from '~/components/Profile/Artists/ArtistProfileCard'
 import ArtistProfileForm from '~/components/Profile/Artists/ArtistProfileForm'
 import ArtistCustomOrdersTable from '~/components/Profile/Artists/CustomOrdersTable'
+import ArtistOrdersTable from '~/components/Profile/Artists/OrdersTable'
 import CollectorProfileCard from '~/components/Profile/Collectors/CollectorProfileCard'
 import CollectorProfileForm from '~/components/Profile/Collectors/CollectorProfileForm'
 import CollectorCustomOrdersTable from '~/components/Profile/Collectors/CustomOrdersTable'
+import CollectorOrdersTable from '~/components/Profile/Collectors/OrdersTable'
 
 export default {
   components: {
     ArtistProfileCard,
     ArtistProfileForm,
     ArtistCustomOrdersTable,
+    ArtistOrdersTable,
     CollectorProfileCard,
     CollectorProfileForm,
     CollectorCustomOrdersTable,
+    CollectorOrdersTable,
     EventTable,
     ProductTable
   },

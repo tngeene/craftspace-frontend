@@ -7,9 +7,9 @@
             <img :src="event.banner" class="card-img-top" :alt="event.name" />
             <div class="event-price px-2">
               <span v-if="event.ticket_price" class="badge badge-light"
-                >Ksh {{ event.ticket_price }}</span
+                >Ticket: Ksh {{ event.ticket_price }}</span
               >
-              <span v-else class="badge badge-light">Free</span>
+              <span v-else class="badge badge-light">Ticket: Free</span>
             </div>
             <div class="card-body">
               <div class="row">
