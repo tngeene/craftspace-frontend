@@ -72,7 +72,31 @@
             <label for>Due Date</label>
             <b-form-datepicker v-model="order.due_date" class="form-control" />
           </div>
-          <div class="row">
+          <div v-if="!isAuthenticated" class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for>First Name</label>
+                <input
+                  v-model="order.first_name"
+                  type="text"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for>
+                  Last Name
+                </label>
+                <input
+                  v-model="order.last_name"
+                  type="text"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for>Phone Number</label>
@@ -105,6 +129,7 @@
   </main>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   async asyncData({ $axios }) {
     try {
@@ -127,6 +152,8 @@ export default {
   data() {
     return {
       order: {
+        first_name: '',
+        last_name: '',
         description: '',
         picture: '',
         due_date: '',
@@ -141,6 +168,9 @@ export default {
       preview: '',
       responseErrors: {}
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated'])
   },
   methods: {
     onFileChange(e) {
@@ -181,7 +211,7 @@ export default {
           })
           .catch((errors) => {
             this.responseErrors = errors.response.data
-            this.$toast.error(`${this.response}`)
+            this.$toast.error(`${this.response.data.detail}`)
           })
       } catch (e) {
         // eslint-disable-next-line no-console

@@ -76,6 +76,47 @@
             </div>
           </div>
         </div>
+        <hr />
+        <div v-if="isVisible" class="controls col-12 mt-3">
+          <p>
+            <button
+              class="btn btn-info"
+              type="button"
+              data-toggle="collapse"
+              data-target="#3DControls"
+              aria-expanded="true"
+              aria-controls="controlsCollapse"
+            >
+              3D Controls
+            </button>
+          </p>
+          <div id="3DControls" class="collapse">
+            <div class="card card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Event</th>
+                    <th scope="col">Output</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">On Mouse Up</th>
+                    <td>Zoom In</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">On Mouse Down</th>
+                    <td>Zoom Out</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Mouse Click & move</th>
+                    <td>Rotate</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
         <div id="productDescCard" class="col-12">
           <ProductDescriptionCard :product="product" />
         </div>
