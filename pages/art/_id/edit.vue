@@ -25,6 +25,13 @@
             :src="spin_preview"
             alt
           ></model-fbx>
+          <!-- <model-obj
+            v-if="spin_preview"
+            class="img-fluid"
+            style="width: 400px; border-radius: 10px; box-shadow: 0 1rem 1rem rgba(0,0,0,.7);"
+            :src="spin_preview"
+            alt
+          ></model-obj> -->
         </div>
       </div>
       <div class="row col-md-6">
@@ -178,7 +185,7 @@ export default {
       }
       try {
         // eslint-disable-next-line no-unused-vars
-        const response = await this.$axios.$patch(
+        const response = await this.$axios.patch(
           `/art-pieces/${product.id}/edit/`,
           formData,
           config
