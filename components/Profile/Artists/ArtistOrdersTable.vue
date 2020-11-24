@@ -70,8 +70,6 @@ export default {
     async getMyOrders(id) {
       try {
         const resp = await this.$axios.get(`/orders/my-orders/`)
-        // eslint-disable-next-line no-console
-        console.log(`resp is ${resp.data}`)
         this.orders = resp.data
       } catch (e) {
         return { orders: [] }
