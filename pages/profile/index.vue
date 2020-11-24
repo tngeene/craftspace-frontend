@@ -139,7 +139,7 @@
           />
         </div>
         <div v-if="activeTab === 'orders'" class="products-table mt-2">
-          <ArtistOrdersTable v-if="loggedInUser.membership_type === 'Artist'" />
+          <!-- <ArtistOrdersTable v-if="loggedInUser.membership_type === 'Artist'" /> -->
           <CollectorOrdersTable
             v-if="loggedInUser.membership_type === 'Collector'"
           />
@@ -161,7 +161,7 @@ import ProductTable from '~/components/Profile/Artists/ProductTable'
 import ArtistProfileCard from '~/components/Profile/Artists/ArtistProfileCard'
 import ArtistProfileForm from '~/components/Profile/Artists/ArtistProfileForm'
 import ArtistCustomOrdersTable from '~/components/Profile/Artists/CustomOrdersTable'
-import ArtistOrdersTable from '~/components/Profile/Artists/OrdersTable'
+// import ArtistOrdersTable from '~/components/Profile/Artists/OrdersTable'
 import CollectorProfileCard from '~/components/Profile/Collectors/CollectorProfileCard'
 import CollectorProfileForm from '~/components/Profile/Collectors/CollectorProfileForm'
 import CollectorCustomOrdersTable from '~/components/Profile/Collectors/CustomOrdersTable'
@@ -172,7 +172,7 @@ export default {
     ArtistProfileCard,
     ArtistProfileForm,
     ArtistCustomOrdersTable,
-    ArtistOrdersTable,
+    // ArtistOrdersTable,
     CollectorProfileCard,
     CollectorProfileForm,
     CollectorCustomOrdersTable,
