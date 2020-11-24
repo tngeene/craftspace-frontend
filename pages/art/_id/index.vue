@@ -34,10 +34,20 @@
             />
             <div @click="isVisible = !isVisible">
               <model-fbx
-                v-if="product.spin_image"
+                v-if="product.spin_image && product.file_type === 'fbx'"
                 :src="product.spin_image"
                 class="mt-2"
               ></model-fbx>
+              <model-obj
+                v-if="product.spin_image && product.file_type === 'obj'"
+                :src="product.spin_image"
+                class="mt-2"
+              ></model-obj>
+              <model-gltf
+                v-if="product.spin_image && product.file_type === 'gltf'"
+                :src="product.spin_image"
+                class="mt-2"
+              ></model-gltf>
             </div>
           </div>
         </div>
@@ -50,7 +60,18 @@
             :alt="product.name"
           />
 
-          <model-fbx v-else :src="product.spin_image"></model-fbx>
+          <model-fbx
+            v-else-if="isVisible && product.file_type === 'fbx'"
+            :src="product.spin_image"
+          ></model-fbx>
+          <model-obj
+            v-else-if="isVisible && product.file_type === 'obj'"
+            :src="product.spin_image"
+          ></model-obj>
+          <model-gltf
+            v-else-if="isVisible && product.file_type === 'gltf'"
+            :src="product.spin_image"
+          ></model-gltf>
         </div>
         <div class="col-md-4 bg-light p-4">
           <h5>{{ product.name }}</h5>
