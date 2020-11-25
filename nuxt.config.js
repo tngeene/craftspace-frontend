@@ -31,6 +31,16 @@ export default {
         rel: 'stylesheet',
         href:
           'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css2?family=Itim&family=Source+Sans+Pro:wght@200&display=swap'
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&family=Inconsolata:wght@300&family=Source+Code+Pro:ital,wght@1,300&display=swap'
       }
     ],
     script: [
