@@ -96,7 +96,8 @@ export default {
   data() {
     return {
       event: [],
-      preview: ''
+      preview: '',
+      is_approved: 'true'
     }
   },
   methods: {
@@ -124,6 +125,7 @@ export default {
       const formData = new FormData()
       for (const data in editedEvent) {
         formData.append(data, editedEvent[data])
+        formData.append('is_approved', this.is_approved)
       }
       try {
         // eslint-disable-next-line no-unused-vars

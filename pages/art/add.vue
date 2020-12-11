@@ -123,7 +123,8 @@ export default {
         price: '',
         picture: '',
         category: '',
-        quantity: ''
+        quantity: '',
+        is_approved: 'true'
       },
       categories: Object,
       preview: '',

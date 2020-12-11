@@ -136,6 +136,7 @@ export default {
     return {
       product: [],
       categories: Object,
+      is_approved: 'true',
       preview: '',
       spin_preview: ''
     }
@@ -182,6 +183,7 @@ export default {
       const formData = new FormData()
       for (const data in product) {
         formData.append(data, product[data])
+        formData.append('is_approved', this.is_approved)
       }
       try {
         // eslint-disable-next-line no-unused-vars

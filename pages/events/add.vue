@@ -93,7 +93,8 @@ export default {
         date: '',
         time: '',
         banner: '',
-        ticket_price: ''
+        ticket_price: '',
+        is_approved: 'true'
       },
       preview: ''
     }
