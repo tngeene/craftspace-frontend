@@ -7,6 +7,8 @@
           <th scope="col">Description</th>
           <th scope="col">Due Date</th>
           <th scope="col">Medium</th>
+          <th scope="col">Price</th>
+          <th scope="col">Status</th>
           <th scope="col">Date Uploaded</th>
           <th scope="col">Last Update</th>
           <th scope="col"></th>
@@ -26,6 +28,24 @@
           <td>{{ order.description | truncate(15, '...') }}</td>
           <td>{{ order.due_date | moment('MMMM Do YYYY') }}</td>
           <td>{{ order.medium }}</td>
+          <td>
+            <span v-if="order.price" class="badge badge-pill badge-info"
+              >Ksh {{ order.price }}</span
+            >
+            <span v-else class="badge badge-pill badge-light"
+              >To Be Quoted</span
+            >
+          </td>
+          <td>
+            <span
+              v-if="order.is_complete"
+              class="badge badge-pill badge-success"
+              >Complete</span
+            >
+            <span v-else class="badge badge-pill badge-warning"
+              >Pending Completion</span
+            >
+          </td>
           <td>
             {{ order.created_on | moment('MMMM Do YYYY h:mm a') }}
           </td>

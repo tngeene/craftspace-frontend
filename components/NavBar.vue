@@ -30,7 +30,9 @@
           <b-nav-item
             ><nuxt-link to="/events">Exhibitions</nuxt-link></b-nav-item
           >
-
+          <b-nav-item
+            ><nuxt-link to="/feedback">Feedback</nuxt-link></b-nav-item
+          >
           <b-nav-item-dropdown v-if="isAuthenticated" right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
