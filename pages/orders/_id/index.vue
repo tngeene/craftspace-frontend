@@ -25,7 +25,7 @@
                 </td>
                 <td>{{ order_item.product.name }}</td>
                 <td>{{ order_item.product.uploaded_by }}</td>
-                <td>{{ order_item.quantity }}</td>
+                <td>{{ order_item.quantities }}</td>
                 <td>{{ order_item.product.price }}</td>
                 <!-- <td>2.846</td> -->
               </tr>
