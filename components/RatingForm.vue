@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-center py-4 mr-2">
-      <div v-if="!isAuthenticated">
+      <div v-if="!isAuthenticated || loggedInUser.id === userId">
         <label for>Average Rating</label>
         <b-form-rating
           v-model="average_rating"
@@ -44,7 +44,8 @@ export default {
       profile: '',
       rating: '',
       average_rating: '',
-      profile_id: ''
+      profile_id: '',
+      userId: ''
     }
   },
   computed: {
@@ -79,6 +80,7 @@ export default {
           if (response.status === 200) {
             this.average_rating = response.data[0].average_rating
             this.profile_id = response.data[0].id
+            this.userId = response.data[0].user.id
           }
         })
       } catch (e) {

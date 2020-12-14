@@ -17,7 +17,13 @@
             :alt="order.picture"
           />
           <p class="order-description mt-2">{{ order.description }}</p>
-          <div class="text-center">
+          <div
+            v-if="
+              loggedInUser.membership_type === 'Artist' &&
+                loggedInUser.id === order.artist.id
+            "
+            class="text-center"
+          >
             <b-button
               v-if="!order.price"
               v-b-modal.priceModal
@@ -90,7 +96,7 @@
           </div>
         </div>
       </div>
-      <b-modal id="priceModal" title="Quote Price">
+      <b-modal id="priceModal" ref="my-modal" title="Quote Price">
         <form ref="form">
           <b-form-group
             label="Price"
@@ -118,14 +124,14 @@
               variant="warning"
               size="md"
               class="float-right"
-              @click="show = false"
+              @click="hideModal"
             >
-              Close
+              Cancel
             </b-button>
           </div>
         </template>
       </b-modal>
-      <b-modal id="completeModal" title="Mark As Complete">
+      <b-modal id="completeModal" ref="my-modal" title="Mark As Complete">
         <p class="my-4">
           Are You sure you want to mark this order as complete?
         </p>
@@ -143,9 +149,9 @@
               variant="warning"
               size="md"
               class="float-right"
-              @click="show = false"
+              @click="hideModal"
             >
-              Close
+              Cancel
             </b-button>
           </div>
         </template>
@@ -156,8 +162,9 @@
 
 <script>
 import moment from 'moment'
-
+import { mapGetters } from 'vuex'
 export default {
+  middleware: 'auth',
   async asyncData({ $axios, params }) {
     try {
       const order = await $axios.$get(`/custom-orders/${params.id}`)
@@ -172,6 +179,9 @@ export default {
       footerTextVariant: 'info',
       show: false
     }
+  },
+  computed: {
+    ...mapGetters(['loggedInUser'])
   },
   methods: {
     quotePrice() {
@@ -215,6 +225,9 @@ export default {
             this.$toast.info(`${error.response.detail.is_complete}`)
           }
         })
+    },
+    hideModal() {
+      this.$refs['my-modal'].hide()
     },
     modalInfo(order) {
       this.order = order

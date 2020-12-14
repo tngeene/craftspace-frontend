@@ -174,8 +174,6 @@
 import ProductCard from '~/components/Products/ProductCard'
 import EventCard from '~/components/Events/EventCard'
 import RatingForm from '~/components/RatingForm'
-// import ProfileCard from '~/components/ProfileCard.vue'
-// import ArtistProfile from '~/components/ArtistProfile.vue'
 
 export default {
   components: {

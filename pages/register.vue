@@ -87,6 +87,18 @@
                   placeholder="Password"
                 />
               </div>
+              <div class="form-check form-check-inline">
+                <b-form-checkbox
+                  id="termCheckBox"
+                  v-model="status"
+                  name="termCheckBox"
+                  value="accepted"
+                  unchecked-value="not_accepted"
+                >
+                  I accept the
+                  <nuxt-link to="/terms-of-use">terms of use</nuxt-link>
+                </b-form-checkbox>
+              </div>
               <!-- <div class="form-group">
                 <label for="re-pass"
                   ><i class="zmdi zmdi-lock-outline"></i
@@ -110,6 +122,7 @@
                   <a href="#" class="term-service">Terms of service</a></label
                 >
               </div> -->
+
               <div class="form-group form-button">
                 <input
                   id="signup"
@@ -117,6 +130,7 @@
                   name="signup"
                   class="form-submit bg-dark"
                   value="Register"
+                  :disabled="status == 'not_accepted'"
                 />
               </div>
             </form>
@@ -148,6 +162,7 @@ export default {
       firstname: '',
       lastname: '',
       phone_number: '',
+      status: 'not_accepted',
       membership_type: null,
       options: [
         { value: 'Artist', text: 'Artist' },
