@@ -4,10 +4,10 @@
     <div class="card-body text-center">
       <h5 class="card-title">{{ product.name }}</h5>
       <p class="card-text">
-        <strong> Category:</strong> {{ product.category }}
+        <strong> Category: &nbsp;</strong> {{ product.category }}
       </p>
       <p class="card-text">
-        <strong> Artist:</strong> {{ product.uploaded_by }}
+        <strong> Artist: &nbsp;</strong> {{ product.uploaded_by }}
       </p>
       <div class="action-buttons text-center d-flex">
         <nuxt-link :to="`/art/${product.id}/`" class="btn btn-md btn-primary">

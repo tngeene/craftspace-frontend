@@ -33,6 +33,10 @@
               @click="isVisible = !isVisible"
             />
             <div @click="isVisible = !isVisible">
+              <span v-if="product.spin_image" class="badge badge-info mt-2"
+                >click below to <br />
+                view 3D model</span
+              >
               <model-fbx
                 v-if="product.spin_image && product.file_type === 'fbx'"
                 :src="product.spin_image"

@@ -95,7 +95,7 @@
                 type="submit"
                 name="signin"
                 class="form-submit bg-dark"
-                value="Send Password Reset Link"
+                :value="submit"
               />
             </div>
             <div class="small mt-2">
@@ -124,7 +124,8 @@ export default {
       email: '',
       password: '',
       password_reset_email: '',
-      isVisible: false
+      isVisible: false,
+      submit: 'Send Password Reset Link'
     }
   },
 
@@ -145,6 +146,7 @@ export default {
       }
     },
     async SendPasswordResetEmail() {
+      this.submit = 'Sending Recovery Link'
       await this.$axios
         .post('auth/users/reset_password/', {
           email: this.password_reset_email

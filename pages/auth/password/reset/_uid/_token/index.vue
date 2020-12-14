@@ -89,7 +89,10 @@ export default {
           }
         })
         .catch((error) => {
-          if (error.response) this.$toast.show(`${error.response.data.detail}`)
+          if (error.response)
+            // eslint-disable-next-line no-console
+            console.log(error.response)
+          this.$toast.show(`${error.response.data.detail.token}`)
         })
     }
   },

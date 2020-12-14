@@ -5,7 +5,10 @@
       <div class="col-12 text-right mb-4">
         <div class="d-flex justify-content-between mt-2">
           <h2>Upcoming Events and Exhibitions</h2>
-          <nuxt-link to="/events/add" class="btn btn-md btn-dark ml-2"
+          <nuxt-link
+            v-if="isAuthenticated"
+            to="/events/add"
+            class="btn btn-md btn-dark ml-2"
             >Upload Event</nuxt-link
           >
         </div>
@@ -22,6 +25,7 @@
   </main>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import EventCard from '~/components/Events/EventCard'
 export default {
   components: {
@@ -44,6 +48,9 @@ export default {
     return {
       events: []
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated'])
   },
   head() {
     return {

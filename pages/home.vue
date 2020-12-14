@@ -113,17 +113,16 @@
             <nuxt-link to="/art/" class="text-dark mr-2">View All</nuxt-link>
           </div>
         </div>
-        <template v-for="product in products.slice(0, 4)">
-          <div
-            :key="product.id"
-            class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
-          >
-            <product-card
-              :on-delete="deleteProduct"
-              :product="product"
-            ></product-card>
-          </div>
-        </template>
+        <div class="row col-12">
+          <template v-for="product in products.slice(0, 4)">
+            <div
+              :key="product.id"
+              class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
+            >
+              <product-card :product="product"></product-card>
+            </div>
+          </template>
+        </div>
       </div>
     </div>
   </div>

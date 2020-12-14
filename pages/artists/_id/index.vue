@@ -18,18 +18,6 @@
                 </h2>
               </div>
               <div class="text-center">
-                <!-- <p>
-                  <strong
-                    ><i class="fa fa-phone fa-rotate-90" aria-hidden="true"></i
-                  ></strong>
-                  {{ artist.phone_number }}
-                </p> -->
-                <p>
-                  <strong
-                    ><i class="fa fa-envelope" aria-hidden="true"></i
-                  ></strong>
-                  {{ artist.email }}
-                </p>
                 <p>
                   <strong
                     ><i class="fa fa-map-pin" aria-hidden="true"></i>
@@ -76,18 +64,6 @@
             >
               Events
             </a>
-            <!-- <a
-              :class="[
-                'nav-item',
-                'nav-link',
-                'mr-1',
-                { active: activeTab === 'profile' }
-              ]"
-              href="#"
-              @click="setActiveTab('profile')"
-            >
-              Full Profile
-            </a> -->
           </nav>
           <div v-if="activeTab === 'pieces'" class="row">
             <div v-if="products.length > 0" class="row">
@@ -136,34 +112,6 @@
               </div>
             </div>
           </div>
-          <!-- <div v-if="activeTab === 'profile'" class="text-center">
-            <h4 class="text-capitalize mb-3">
-              Artist Details
-            </h4>
-            <table class="table table-striped">
-              <tbody>
-                <tr>
-                  <th>Name</th>
-                  <td>
-                    {{ artist.first_name }}
-                    {{ artist.last_name }}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <td>{{ artist.email }}</td>
-                </tr>
-                <tr>
-                  <th>Phone</th>
-                  <td>{{ artist.phone_number }}</td>
-                </tr>
-                <tr>
-                  <th>County</th>
-                  <td>{{ profile.county }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div> -->
         </div>
       </div>
     </div>
@@ -179,10 +127,7 @@ export default {
   components: {
     ProductCard,
     RatingForm,
-    // eslint-disable-next-line vue/no-unused-components
     EventCard
-    // ProfileCard,
-    // ArtistProfile
   },
   // eslint-disable-next-line vue/require-prop-types
   props: ['artistProfile'],

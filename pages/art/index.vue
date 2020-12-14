@@ -26,17 +26,22 @@
           >
         </div>
       </div>
-      <template v-for="product in products">
-        <div
-          :key="product.id"
-          class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
-        >
-          <product-card
-            :on-delete="deleteProduct"
-            :product="product"
-          ></product-card>
-        </div>
-      </template>
+      <div v-if="products.length > 0" class="row col-12">
+        <template v-for="product in products">
+          <div
+            :key="product.id"
+            class="flipInX animated col-lg-3 col-md-4 col-sm-6 mb-4"
+          >
+            <product-card
+              :on-delete="deleteProduct"
+              :product="product"
+            ></product-card>
+          </div>
+        </template>
+      </div>
+      <div v-else class="row justify-content-center col-12">
+        <p>No products uploaded at the moment 😯</p>
+      </div>
     </div>
   </main>
 </template>
