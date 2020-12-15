@@ -53,7 +53,7 @@
             </div>
           </div>
           <hr />
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-12">
               <p class="text-muted">About</p>
             </div>
@@ -70,7 +70,7 @@
                 />
               </div>
             </div>
-          </div>
+          </div> -->
 
           <button type="submit" class="btn d-flex  btn-dark">
             Update Profile
@@ -124,6 +124,30 @@ export default {
         })
         .catch((error) => {
           if (error.response) this.$toast.show(`${error.response.data.detail}`)
+        })
+    },
+    updateProfile() {
+      const profile = this.profile
+      const formData = new FormData()
+      const config = {
+        headers: { 'content-type': 'multipart/form-data' }
+      }
+      for (const data in profile) {
+        formData.append(data, profile[data])
+        formData.append('is_active', true)
+      }
+      this.$axios
+        .patch(`auth/users/${this.loggedInUser.id}/`, formData, config)
+        .then((response) => {
+          if (response.status === 200) {
+            window.location.reload(true)
+            this.$toast.success('Details Updated successfully')
+          }
+        })
+        .catch((error) => {
+          if (error.response) {
+            this.$toast.error('Could not update profile')
+          }
         })
     }
   }
